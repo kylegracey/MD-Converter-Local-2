@@ -5,6 +5,7 @@
   "main": "app.js",
   "scripts": {
     "dev": "babel-node app.js",
+    "exif": "babel-node exif.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -21,6 +22,7 @@
     "babel-cli": "^6.24.1"
   },
   "dependencies": {
-    "csvjson": "^4.1.3"
+    "csvjson": "^4.1.3",
+    "exiftool": "0.0.3"
   }
 }
