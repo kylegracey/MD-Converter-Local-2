@@ -1,0 +1,26 @@
+{
+  "name": "md-converter-local-2",
+  "version": "0.1.1",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "dev": "babel-node app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kylegracey/MD-Converter-Local-2.git"
+  },
+  "author": "Kyle Gracey",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kylegracey/MD-Converter-Local-2/issues"
+  },
+  "homepage": "https://github.com/kylegracey/MD-Converter-Local-2#readme",
+  "devDependencies": {
+    "babel-cli": "^6.24.1"
+  },
+  "dependencies": {
+    "csvjson": "^4.1.3"
+  }
+}
