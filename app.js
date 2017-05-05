@@ -1,7 +1,10 @@
-const test = "hello world!"
+const mdConvert = require('./modules/md-converter.js')
 
-function printTest(message) {
-  console.log(message)
+const inputPath = process.argv[2]
+const outputPath = process.argv[3]
+
+let logFile = function(data) {
+    console.log(data)
 }
 
-printTest(test)
+jsonData = mdConvert(inputPath)
