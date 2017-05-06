@@ -1,10 +1,20 @@
-const mdConvert = require('./modules/md-converter.js')
+const fs = require('fs')
+// const mdConvert = require('./modules/md-converter.js')
 
-const inputPath = process.argv[2]
-const outputPath = process.argv[3]
+// MODULES
+const trimExtension = require('./modules/trim-extension')
 
-let logFile = function(data) {
+// SETTINGS
+// const inputPath = process.argv[2]
+const inputPath = './files/targetexport.json'
+// const outputPath = process.argv[3]
+const jsonData = require(inputPath)
+const propStructure = require('./config/propstructure.json')
+
+const logFile = function(err, data) {
     console.log(data)
 }
 
-jsonData = mdConvert(inputPath)
+const parseMD = function(data) {
+  console.log(data.length)
+}
