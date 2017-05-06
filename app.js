@@ -4,13 +4,15 @@ const fs = require('fs')
 // MODULES
 const findValues = require('./modules/find-values')
 const trimExtension = require('./modules/trim-extension')
+const getSetting = require('./modules/get-setting')
+const getDescription = require('./modules/get-description')
 
 // const inputPath = process.argv[2]
 const inputPath = './files/targetexport.json'
 // const outputPath = process.argv[3]
 const jsonData = require(inputPath)
 
-let outputJSON = []
+let jsonOutput = []
 
 const parseMD = function(data) {
   // Loop through each object in Data
@@ -19,11 +21,11 @@ const parseMD = function(data) {
     let obj = data[i]
     let newObj = {
       "Asset Name" : trimExtension(obj),
-      "Asset Description" : obj.Description,
+      "Asset Description" : getDescription(obj),
       BrandSubbrand : getSetting("BrandSubBrand"),
-      Created : formatDate(obj),
+      Created : "",
       Copyright : "",
-      "Tags" : "",
+      Tags : "",
       "Path to Assets" : obj.SourceFile,
       Archived : "0",
       "New Filename" : obj.FileName,
@@ -32,9 +34,9 @@ const parseMD = function(data) {
       clientteam : getSetting("Client Team"),
       assettype : "",
       assetsubtype : "",
-      year : obj.CreateDate.substring(0,4),
+      year : "",
       campaign : "",
-      productgroup : groupSearch(obj.Keywords),
+      productgroup : "",
       product : "",
       productsize : "",
       productsubtype : "",
@@ -51,14 +53,10 @@ const parseMD = function(data) {
       jobid : ""
     };
 
-    // console.log('obj name is now ' + obj["SourceFile"])
-    // let newObj = findValues(obj)
-    // console.log('newObj is now ' + newObj["Asset Name"])
-    // console.log("Pushing " + bObj + 'into outputJSON')
-    outputJSON.push(newObj)
-    // console.log('Pushed newObj into outputJSON')
+    jsonOutput.push(newObj)
+
   }
-  console.log(outputJSON)
+  console.log(jsonOutput)
 }
 
 parseMD(jsonData)

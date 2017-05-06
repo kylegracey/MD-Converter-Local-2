@@ -1,0 +1,39 @@
+[
+  {
+    "BrandSubBrand": "VML",
+    "Group": "PepsiCo",
+    "Client Team": "Gatorade",
+    "Product Groups": {
+      "GTQ": [
+        "GTQ",
+        "GTQ - Fierce",
+        "GTQ - Flow",
+        "GTQ - Frost"
+      ],
+      "Bars": [
+        "Fuel Bar",
+        "Recover Bar"
+      ],
+      "Prime": [
+        "Prime Chews",
+        "Prime Pouch"
+      ],
+      "Perform": [
+        "GTQ",
+        "GTQ - Fierce",
+        "GTQ - Flow",
+        "GTQ - Frost",
+        "Gx",
+        "Coolers",
+        "Cups"
+      ],
+      "Recover": [
+        "Protein Powder",
+        "Protein Shake",
+        "Recover Bar",
+        "Shaker Bottle"
+      ]
+    },
+    "KeywordCats" : {}
+  }
+]
