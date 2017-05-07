@@ -45,6 +45,8 @@ function getCreateDate(obj) {
   } else if (obj["CreatedDate"]) {
     let formattedDate = formatTwo(obj["CreatedDate"])
     return formattedDate;
+  } else {
+    return "2012-01-01"
   }
 
 }
