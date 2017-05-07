@@ -23,6 +23,10 @@ const sortHSLogic = function(objHS, hsArr, newObj) {
 
     if (newObj.hasOwnProperty(category)) {
       // If category matches one in object, push the second string from array into appropriate category.
+      if (hsArr[1] == "Backgrounds") {
+        hsArr[1] = "Backgrounds & Textures"
+      }
+
       if(newObj[category].indexOf(hsArr[1]) == -1) {
         newObj[category].push(hsArr[1])
       }

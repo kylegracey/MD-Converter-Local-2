@@ -8,15 +8,20 @@
         "GTQ",
         "GTQ - Fierce",
         "GTQ - Flow",
-        "GTQ - Frost"
+        "GTQ - Frost",
+        "G2",
+        "GTQ - Nuestro Sabor",
+        "GTQ - Powder"
       ],
       "Bars": [
         "Fuel Bar",
-        "Recover Bar"
+        "Whey Protein Bar"
       ],
       "Prime": [
-        "Prime Chews",
-        "Prime Pouch"
+        "Energy Chews",
+        "Prime Pouch",
+        "Fuel Bar",
+        "Sports Fuel Drink"
       ],
       "Perform": [
         "GTQ",
@@ -30,8 +35,27 @@
       "Recover": [
         "Protein Powder",
         "Protein Shake",
-        "Recover Bar",
-        "Shaker Bottle"
+        "Whey Protein Bar",
+        "Shaker Bottle",
+        "Post-Game Protein"
+      ],
+      "Endurance" : [
+        "Gatorlytes",
+        "Carb Energy Chews",
+        "Endurance Formula",
+        "Carb Energy Drink"
+      ],
+      "Equipment" : [
+        "Coolers",
+        "Cups",
+        "Blender Bottle",
+        "Squeeze Bottles",
+        "Tent",
+        "Towel"
+      ],
+      "Gx" : [
+        "Gx Bottle",
+        "Gx Pods"
       ]
     },
     "Product Size": [
@@ -58,25 +82,30 @@
         "Ice Chest"
     ],
     "KeywordCats" : {
-      "Asset Subtype" : [
-      	"Backgrounds",
-      	"Color Palette",
-      	"Icons",
-      	"Layouts",
-      	"Logos",
-      	"Original",
-      	"Releases",
-      	"Stock"
-      ],
       "Asset Type" : [
-      	"Documents",
-      	"Fonts",
-      	"Graphics",
-      	"Photography",
-      	"Presentations",
-      	"Product Renders",
-      	"Production Files",
-      	"Video"
+        "Photography",
+        "Video",
+        "Graphics",
+        "Fonts",
+        "Presentations",
+        "Documents",
+        "Production Files",
+        "Product Renders"
+      ],
+      "Asset Subtype" : [
+        "Original",
+        "Stock",
+        "Product",
+        "Partner",
+        "Logos",
+        "Layouts",
+        "Icons",
+        "Backgrounds & Textures",
+        "Releases",
+        "Print Ad",
+        "OLM",
+        "Email",
+        "Facebook"
       ],
       "Person" : [
       	"April Ross",
@@ -100,33 +129,40 @@
       	"Usain Bolt"
       ],
       "Campaign" : [
-      	"Be Like Mike",
-      	"Beat the Heat",
-      	"eComm",
-      	"Every Ounce Counts",
-      	"Flow",
-      	"G Organic",
-      	"Gatorade Brand",
-      	"GSSI",
-      	"Gx",
-      	"League of Captains",
-      	"Social",
-      	"Sweat with the Best",
-      	"Volume Driving",
-      	"Win From Within"
+        "Flow",
+        "Social",
+        "Volume Driving",
+        "Beat the Heat",
+        "eComm",
+        "Sweat with the Best",
+        "Win from Within",
+        "Gatorade Brand",
+        "Sports Fuel Innovation",
+        "Gx",
+        "League of Captains",
+        "Every Ounce Counts",
+        "G Organic",
+        "GSSI",
+        "Be Like Mike"
       ],
       "Gender" : [
       	"Female",
       	"Male"
       ],
       "Market" : [
-      	"Australia",
-      	"EMEA",
-      	"France",
-      	"Germany",
-      	"International",
-      	"North America",
-      	"USA"
+        "North America",
+        "International",
+        "USA",
+        "EMEA",
+        "Australia",
+        "France",
+        "Germany",
+        "Asia",
+        "Europe",
+        "Latin America",
+        "Oceania",
+        "Africa",
+        "Middle East"
       ],
       "Marks" : [
       	"Game",
@@ -139,11 +175,12 @@
       	"Two"
       ],
       "Platform Rights" : [
-      	"Broadcast",
-      	"Digital",
-      	"Print",
-      	"Social",
-      	"Unlimited"
+        "Digital",
+        "Social",
+        "Broadcast",
+        "Unlimited",
+        "Print",
+        "Internal"
       ],
       "Product" : [
       	"Blender Bottle",
@@ -226,17 +263,27 @@
       	"Wide Shot"
       ],
       "Sport" : [
-      	"Baseball",
-      	"Basketball",
-      	"Cross Country",
-      	"Football",
-      	"Hockey",
-      	"Lacrosse",
-      	"NASCAR",
-      	"Soccer",
-      	"Tennis",
-      	"Track",
-      	"Workout",
+        "Baseball",
+        "Basketball",
+        "Cross Country",
+        "Football",
+        "Hockey",
+        "Lacrosse",
+        "NASCAR",
+        "Soccer",
+        "Tennis",
+        "Track",
+        "Workout",
+        "Yoga/Pilates",
+        "Bootcamp",
+        "Spin",
+        "Boxing",
+        "Dance",
+        "Running",
+        "Training",
+        "Golf",
+        "Skateboarding",
+        "Softball",
         "Volleyball"
       ]
     }
