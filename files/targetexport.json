@@ -1,7 +1,6 @@
 [{
   "SourceFile": "Desktop/_To Bynder/Graphics/Backgrounds/GAT_Gx_Black_Background.psd",
   "FileName": "GAT_Gx_Black_Background.psd",
-  "HierarchicalSubject": ["Asset Subtype|Backgrounds","Asset Type|Graphics","Campaign|Gx","Tags|Backgrounds"],
   "Keywords": ["Backgrounds","Graphics","Gx"],
   "Subject": ["Backgrounds","Graphics","Gx"],
   "CreateDate": "2015:11:20 21:31:12",
@@ -53,7 +52,7 @@
 {
   "SourceFile": "Desktop/_To Bynder/Graphics/Logos/G Organic/GOrganic_877_Horizontal.ai",
   "FileName": "GOrganic_877_Horizontal.ai",
-  "HierarchicalSubject": ["Asset Type|Graphics","Asset Subtype|Logos","Campaign|G Organic"],
+  "HierarchicalSubject": "Random Test Tag",
   "Subject": ["G Organic","Graphics","Logos"],
   "CreateDate": "2017:04:26 22:11:04-05:00",
   "FileAccessDate": "2017:05:06 10:18:13-05:00"
@@ -61,7 +60,7 @@
 {
   "SourceFile": "Desktop/_To Bynder/Graphics/Logos/G Organic/GOrganic_877_Stacked.ai",
   "FileName": "GOrganic_877_Stacked.ai",
-  "HierarchicalSubject": ["Asset Type|Graphics","Asset Subtype|Logos","Campaign|G Organic"],
+  "HierarchicalSubject": "Team|Houston Texans",
   "Subject": ["G Organic","Graphics","Logos"],
   "CreateDate": "2017:04:26 22:11:10-05:00",
   "FileAccessDate": "2017:05:06 10:18:13-05:00"
@@ -69,7 +68,7 @@
 {
   "SourceFile": "Desktop/_To Bynder/Graphics/Logos/G Organic/GOrganic_877_Vertical.ai",
   "FileName": "GOrganic_877_Vertical.ai",
-  "HierarchicalSubject": ["Asset Type|Graphics","Asset Subtype|Logos","Campaign|G Organic"],
+  "HierarchicalSubject": "Team|Houston Texans|Tier 3",
   "Subject": ["G Organic","Graphics","Logos"],
   "CreateDate": "2017:04:26 22:11:09-05:00",
   "FileAccessDate": "2017:05:06 10:18:13-05:00"
@@ -6803,7 +6802,7 @@
 {
   "SourceFile": "Desktop/_To Bynder/Product Renders/Recover/Whey Protein Bar/G_Bar_2oz_12pkCad_PBC_Angle_15_comp.png",
   "FileName": "G_Bar_2oz_12pkCad_PBC_Angle_15_comp.png",
-  "HierarchicalSubject": ["Asset Type|Product Renders","Product|Whey Protein Bar","Shot Type|Pack Shot"],
+  "HierarchicalSubject": "Asset Expired",
   "Subject": [10430,"12pk","2oz","Angle","Bar","Caddy","Cookies and Creme","Cream","EPS","Gatorade","Pack Shot","Product Renders","Recover","Rendering","Whey Protein Bar"],
   "CreateDate": "2013:11:12",
   "CreatedDate": "2015-03-13",
@@ -6835,7 +6834,7 @@
 {
   "SourceFile": "Desktop/_To Bynder/Product Renders/Recover/Whey Protein Bar/G_Bar_2oz_6pkCad_ChocChp_Side_14_10172.tif",
   "FileName": "G_Bar_2oz_6pkCad_ChocChp_Side_14_10172.tif",
-  "HierarchicalSubject": ["Asset Type|Product Renders","Product|Whey Protein Bar","Shot Type|Pack Shot"],
+  "HierarchicalSubject": "Product|Protein Powder|Individual Packet",
   "Keywords": [10172,"2oz","6pk","bar","Caddy","Chocolate Chip","EPS","Gatorade","Pack Shot","Product Renders","Recover","Rendering","Side","Whey Protein Bar"],
   "Subject": [10172,"2oz","6pk","bar","Caddy","Chocolate Chip","EPS","Gatorade","Pack Shot","Product Renders","Recover","Rendering","Side","Whey Protein Bar"],
   "CreateDate": "2014:10:02",
@@ -6965,9 +6964,6 @@
 {
   "SourceFile": "Desktop/_To Bynder/Product Renders/Recover/Whey Protein Bar/Recover Bar WORKING FILE.psd",
   "FileName": "Recover Bar WORKING FILE.psd",
-  "HierarchicalSubject": ["Asset Type|Product Renders","Product|Whey Protein Bar","Shot Type|Individual Product"],
-  "Keywords": ["Individual Product","Product Renders","Whey Protein Bar"],
-  "Subject": ["Individual Product","Product Renders","Whey Protein Bar"],
   "CreateDate": "2014:12:02 11:31:14-05:00",
   "FileAccessDate": "2017:05:06 10:18:43-05:00"
 },
@@ -6983,17 +6979,12 @@
 {
   "SourceFile": "Desktop/_To Bynder/Product Renders/Soccer Formula/GFC_LL_LSE_16p9_051616.psd",
   "FileName": "GFC_LL_LSE_16p9_051616.psd",
-  "HierarchicalSubject": ["Asset Type|Product Renders","Product|Soccer Formula","Shot Type|Individual Product"],
-  "Keywords": ["Individual Product","Product Renders","Soccer Formula"],
-  "Subject": ["Individual Product","Product Renders","Soccer Formula"],
   "CreateDate": "2016:04:14 10:04:09-07:00",
   "FileAccessDate": "2017:05:06 10:18:43-05:00"
 },
 {
   "SourceFile": "Desktop/_To Bynder/Product Renders/Soccer Formula/GFC_Or_LSE_16p9_051616.psd",
   "FileName": "GFC_Or_LSE_16p9_051616.psd",
-  "HierarchicalSubject": ["Asset Type|Product Renders","Product|Soccer Formula","Shot Type|Individual Product"],
-  "Keywords": ["Individual Product","Product Renders","Soccer Formula"],
   "Subject": ["Individual Product","Product Renders","Soccer Formula"],
   "CreateDate": "2016:04:14 10:04:09-07:00",
   "FileAccessDate": "2017:05:06 10:18:43-05:00"
@@ -7001,7 +6992,6 @@
 {
   "SourceFile": "Desktop/_To Bynder/Product Renders/Sports Fuel Innovation Betas/SFR_Fastco_heroshot_highres.jpg",
   "FileName": "SFR_Fastco_heroshot_highres.jpg",
-  "HierarchicalSubject": ["Asset Type|Product Renders","Product Group (Manual Trigger)|Sports Fuel Innovation"],
   "Keywords": ["Product Renders","Sports Fuel Innovation"],
   "Subject": ["Product Renders","Sports Fuel Innovation"],
   "FileAccessDate": "2017:05:06 10:18:43-05:00"

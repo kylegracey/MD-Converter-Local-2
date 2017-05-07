@@ -36,6 +36,15 @@ function writeCsvFile(data) {
 
 }
 
+const joinArrays = function(obj) {
+  //Find all arrays in new object and join them into a string for csv output
+  for (var key in obj) {
+      if (obj.hasOwnProperty(key) && Array.isArray(obj[key])) {
+         obj[key] = obj[key].join(',');
+      }
+  }
+}
+
 const parseMD = function(data) {
   // Loop through each object in Data
   data.forEach(function(obj) {
@@ -47,37 +56,37 @@ const parseMD = function(data) {
       BrandSubbrand : getSetting("BrandSubBrand"),
       Created : getCreateDate(obj),
       Copyright : "",
-      Tags : "",
+      Tags : [],
       "Path to Assets" : obj.SourceFile,
       Archived : "0",
       "New Filename" : obj.FileName,
       fileextension: "",
       group : getSetting("Group"),
       clientteam : getSetting("Client Team"),
-      assettype : "",
-      assetsubtype : "",
+      assettype : [],
+      assetsubtype : [],
       year : "",
-      campaign : "",
+      campaign : [],
       productgroup : groupSearch(obj.Keywords),
-      product : "",
-      productsize : "",
-      productsubtype : "",
-      productgender : "",
-      numberofpeople : "",
-      person : "",
-      teammarks : "",
-      gender : "",
-      shottype : "",
-      sport : "",
-      assetstatus : "",
-      market : "",
-      platformrights : "",
-      jobid : ""
+      product : [],
+      productsize : [],
+      productsubtype : [],
+      productgender : [],
+      numberofpeople : [],
+      person : [],
+      teammarks : [],
+      gender : [],
+      shottype : [],
+      sport : [],
+      assetstatus : [],
+      market : [],
+      platformrights : [],
+      jobid : []
     };
 
     newObj.year = newObj.Created.substring(0,4)
-    sortKeywords(obj)
-
+    sortKeywords(obj, newObj)
+    joinArrays(newObj)
     jsonOutput.push(newObj)
 
   })
