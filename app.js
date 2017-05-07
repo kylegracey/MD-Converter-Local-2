@@ -6,6 +6,7 @@ const csvjson = require('csvjson')
 const trimExtension = require('./modules/trim-extension')
 const getSetting = require('./modules/get-setting')
 const groupSearch = require('./modules/group-search')
+const sortKeywords = require('./modules/sort-keywords')
 const getDescription = require('./modules/get-description')
 const getCreateDate = require('./modules/get-create-date')
 const evalJSON = require('./modules/eval-json')
@@ -75,6 +76,7 @@ const parseMD = function(data) {
     };
 
     newObj.year = newObj.Created.substring(0,4)
+    sortKeywords(obj)
 
     jsonOutput.push(newObj)
 
