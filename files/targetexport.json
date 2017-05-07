@@ -12,7 +12,6 @@
 {
   "SourceFile": "Desktop/_To Bynder/Graphics/League of Captains/LOC_28ozHero.psd",
   "FileName": "LOC_28ozHero.psd",
-  "HierarchicalSubject": ["Campaign|League of Captains","Asset Type|Graphics","Athlete|Peyton Manning","Athlete|JJ Watt","Athlete|Cam Newton","Athlete|Eli Manning","Athlete|RGIII","Gender|Male","Number of People|Group of People (3+)","Marks|Game","Sport|Football","Shot Type|Group"],
   "Keywords": ["Cam Newton","Eli Manning","Football","Game","Graphics","Group","Group of People (3+)","JJ Watt","League of Captains","Male","Peyton Manning","RGIII"],
   "Subject": ["Cam Newton","Eli Manning","Football","Game","Graphics","Group","Group of People (3+)","JJ Watt","League of Captains","Male","Peyton Manning","RGIII"],
   "CreateDate": "2014:03:07 11:35:44-06:00",
@@ -21,7 +20,6 @@
 {
   "SourceFile": "Desktop/_To Bynder/Graphics/Logos/Every Ounce Counts/GATO-EFFICACY-brushTYPE-SSU-170127.ai",
   "FileName": "GATO-EFFICACY-brushTYPE-SSU-170127.ai",
-  "HierarchicalSubject": ["Asset Type|Graphics","Asset Subtype|Logos","Campaign|Every Ounce Counts"],
   "Subject": ["Every Ounce Counts","Graphics","Logos"],
   "CreateDate": "2017:01:27 12:17:12-08:00",
   "FileAccessDate": "2017:05:06 10:18:13-05:00"
@@ -6992,7 +6990,6 @@
 {
   "SourceFile": "Desktop/_To Bynder/Product Renders/Sports Fuel Innovation Betas/SFR_Fastco_heroshot_highres.jpg",
   "FileName": "SFR_Fastco_heroshot_highres.jpg",
-  "Keywords": ["Product Renders","Sports Fuel Innovation"],
   "Subject": ["Product Renders","Sports Fuel Innovation"],
   "FileAccessDate": "2017:05:06 10:18:43-05:00"
 }]

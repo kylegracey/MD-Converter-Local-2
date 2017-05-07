@@ -1,4 +1,6 @@
 const getSetting = require('./get-setting')
+const wordSearch = require('./word-search')
+
 const productSizeTerms = getSetting("Product Size")
 
 const sortHSLogic = function(objHS, hsArr, newObj) {
@@ -84,9 +86,9 @@ const sortKeywords = function(obj, newObj) {
   if (obj.HierarchicalSubject) {
     sortHS(obj.HierarchicalSubject, newObj)
   } else if (obj.Keywords) {
-    console.log('Keywords: ' + obj.FileName)
+    wordSearch(obj.Keywords, newObj)
   } else if (obj.Subject) {
-    console.log('Subject: ' + obj.FileName)
+    wordSearch(obj.Subject, newObj)
   } else {
     (`!!!!Warning!!!! ${obj.FileName} has no keywords!!!!`)
   }

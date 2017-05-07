@@ -10,10 +10,9 @@ const KeywordCats = getSetting("KeywordCats")
 //   name: "Output Object"
 // };
 
-const wordSearch = function (objInput, objOutput){
+const wordSearch = function (objKeywords, objOutput){
 
   let newObjTags = [];
-  let objKeywords = objInput.Keywords.split(", ");
 
   // List of Keywords to Re-map
   const altKeywords = {
