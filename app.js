@@ -5,6 +5,7 @@ const csvjson = require('csvjson')
 // const findValues = require('./modules/find-values')
 const trimExtension = require('./modules/trim-extension')
 const getSetting = require('./modules/get-setting')
+const groupSearch = require('./modules/group-search')
 const getDescription = require('./modules/get-description')
 const getCreateDate = require('./modules/get-create-date')
 
@@ -21,7 +22,7 @@ function writeCsvFile(data) {
   // Convert jsonOutput back to CSV
   const jsonToCsvOptions = {
       headers   : "key",
-      // delimiter   : ";"
+      delimiter   : ";"
   }
   const csvOutput = csvjson.toCSV(data, jsonToCsvOptions);
 
@@ -35,9 +36,9 @@ function writeCsvFile(data) {
 
 const parseMD = function(data) {
   // Loop through each object in Data
-  for (i=0; i<data.length; i++){
+  data.forEach(function(obj) {
     // Get the object
-    let obj = data[i]
+    // let obj = data[i]
     let newObj = {
       "Asset Name" : trimExtension(obj),
       "Asset Description" : getDescription(obj),
@@ -55,7 +56,7 @@ const parseMD = function(data) {
       assetsubtype : "",
       year : "",
       campaign : "",
-      productgroup : "",
+      productgroup : groupSearch(obj.Keywords),
       product : "",
       productsize : "",
       productsubtype : "",
@@ -72,9 +73,11 @@ const parseMD = function(data) {
       jobid : ""
     };
 
+    newObj.year = newObj.Created.substring(0,4)
+
     jsonOutput.push(newObj)
 
-  }
+  })
   writeCsvFile(jsonOutput)
 }
 
