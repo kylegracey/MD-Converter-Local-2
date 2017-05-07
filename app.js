@@ -78,7 +78,7 @@ const parseMD = function(data) {
       gender : [],
       shottype : [],
       sport : [],
-      assetstatus : [],
+      assetstatus : "",
       market : [],
       platformrights : [],
       jobid : []
