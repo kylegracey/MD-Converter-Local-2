@@ -8,6 +8,7 @@ const getSetting = require('./modules/get-setting')
 const groupSearch = require('./modules/group-search')
 const getDescription = require('./modules/get-description')
 const getCreateDate = require('./modules/get-create-date')
+const evalJSON = require('./modules/eval-json')
 
 // const inputPath = process.argv[2]
 // const outputPath = process.argv[3]
@@ -78,6 +79,9 @@ const parseMD = function(data) {
     jsonOutput.push(newObj)
 
   })
+
+  evalJSON(jsonOutput)
+
   writeCsvFile(jsonOutput)
 }
 

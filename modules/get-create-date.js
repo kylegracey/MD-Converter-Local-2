@@ -46,6 +46,7 @@ function getCreateDate(obj) {
     let formattedDate = formatTwo(obj["CreatedDate"])
     return formattedDate;
   } else {
+    // This date evaluated in evalJSON
     return "2012-01-01"
   }
 
