@@ -1,5 +1,5 @@
 const fs = require('fs')
-// const mdConvert = require('./modules/md-converter.js')
+const csvjson = require('csvjson')
 
 // MODULES
 // const findValues = require('./modules/find-values')
@@ -9,11 +9,29 @@ const getDescription = require('./modules/get-description')
 const getCreateDate = require('./modules/get-create-date')
 
 // const inputPath = process.argv[2]
-const inputPath = './files/targetexport.json'
 // const outputPath = process.argv[3]
+const inputPath = './files/targetexport.json'
+const outputPath = './files/output.csv'
+
 const jsonData = require(inputPath)
 
 let jsonOutput = []
+
+function writeCsvFile(data) {
+  // Convert jsonOutput back to CSV
+  const jsonToCsvOptions = {
+      headers   : "key",
+      // delimiter   : ";"
+  }
+  const csvOutput = csvjson.toCSV(data, jsonToCsvOptions);
+
+  // Write CSV to output file
+  fs.writeFile(outputPath, csvOutput, function (err) {
+    if (err) return console.log(err);
+    console.log('Writing to csv/output.csv');
+  });
+
+}
 
 const parseMD = function(data) {
   // Loop through each object in Data
@@ -57,7 +75,7 @@ const parseMD = function(data) {
     jsonOutput.push(newObj)
 
   }
-  console.log(jsonOutput)
+  writeCsvFile(jsonOutput)
 }
 
 parseMD(jsonData)
