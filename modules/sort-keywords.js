@@ -48,9 +48,7 @@ const sortHSLogic = function(hsArr, newObj) {
 
     } else {
       // It's a tag
-      if(newObj.Tags.indexOf(hsArr[0]) == -1) {
-        newObj.Tags.push(hsArr[0])
-      }
+      wordSearch(hsArr[0], newObj)
     }
   } else {
     // Two+ tier
@@ -66,23 +64,11 @@ const sortHSLogic = function(hsArr, newObj) {
       }
     } else {
       // Didn't find a category match. Need to check keywords.
-
-      if(newObj.Tags.indexOf(hsArr[1]) == -1) {
-        newObj.Tags.push(hsArr[1])
-      }
+      wordSearch(hsArr[1], newObj)
     }
 
     if (hsArr[2]) {
-      //Check third tier tags for matches with 'Product Size'
-      if (productSizeTerms.indexOf(hsArr[2]) !== -1) {
-        // If term matches product size term
-        if(newObj.productsize.indexOf(hsArr[2]) == -1) {
-          newObj.productsize.push(hsArr[2])
-        }
-
-      } else if(newObj.Tags.indexOf(hsArr[2]) == -1) {
-        newObj.Tags.push(hsArr[2])
-      }
+      wordSearch(hsArr[2], newObj)
     }
 
     if (hsArr.length > 3) {
@@ -98,12 +84,12 @@ const sortHS = function (objHS, newObj) {
   // [ 'Asset Type|Product Renders', 'Product|Protein Powder|Individual Packet', 'Asset Expired' ]
   // !! Single example: Not array !! ex: 'Asset Type|Product Renders'
 
-  // If not array
+  // If string, convert to array
   if (typeof objHS == "string") {
     let hsArr = objHS.split('|')
     sortHSLogic(remapCheck(hsArr), newObj)
   } else if (Array.isArray(objHS)) {
-    // If array
+    // If already array
     objHS.forEach(function(hs) {
       // For each string containing a set of hierarchical subject tags. Ex:
       // 'Product|Protein Powder|Individual Packet'
@@ -120,9 +106,9 @@ const sortKeywords = function(obj, newObj) {
   if (obj.HierarchicalSubject) {
     sortHS(obj.HierarchicalSubject, newObj)
   } else if (obj.Keywords) {
-    wordSearch(obj.Keywords, newObj)
+    wordSearch(remapCheck(obj.Keywords), newObj)
   } else if (obj.Subject) {
-    wordSearch(obj.Subject, newObj)
+    wordSearch(remapCheck(obj.Subject), newObj)
   } else {
     (`!!!!Warning!!!! ${obj.FileName} has no keywords!!!!`)
   }
