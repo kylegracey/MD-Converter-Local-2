@@ -16,8 +16,8 @@ const evalTags = require('./modules/eval-tags')
 
 // const inputPath = process.argv[2]
 // const outputPath = process.argv[3]
-const inputPath = './files/targetexport.json'
-const outputPath = './files/output.csv'
+const inputPath = './files/gatoradeinput.json'
+const outputPath = './files/gatorade.csv'
 
 const jsonData = require(inputPath)
 
@@ -38,20 +38,6 @@ function writeCsvFile(data) {
     console.log('Writing to csv/output.csv');
   });
 
-}
-
-const pushTags = function(objTags) {
-  objTags.forEach(function(tag) {
-    if (TagTracker.indexOf(tag) == -1) {
-      TagTracker.push(tag)
-    }
-  })
-}
-
-const writeTxtFile = function(TagString) {
-  fs.writeFile('./files/_All-Tags.txt', TagString, function(err) {
-    if (err) return console.log(err)
-  })
 }
 
 const joinArrays = function(obj) {
@@ -110,7 +96,6 @@ const parseMD = function(data) {
     }
 
     //Push tags into TagTracker
-    // pushTags(newObj.Tags)
     for (let i = 0; i < newObj.Tags.length; i++) {
       TagTracker.push(newObj.Tags[i])
     }
@@ -123,9 +108,6 @@ const parseMD = function(data) {
 
   writeCsvFile(jsonOutput)
   evalJSON(jsonOutput)
-
-  // // Write out all tags
-  // writeTxtFile(TagTracker.join('\n'))
   evalTags(TagTracker)
 
 }
