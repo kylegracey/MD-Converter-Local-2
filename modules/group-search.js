@@ -1,39 +1,25 @@
 const getSetting = require('./get-setting.js');
 
 // Settings
-const groupSetting = getSetting("Product Groups");
+const ProductGroups = getSetting("Product Groups");
 
-// Search through Keywords for terms that should be under a 'Group' and return the group(s) the asset should be tagged with.
-module.exports = function groupSearch(objKeywords){
-  let groupHolder = []
+const groupSearch = function(newObj) {
+  // Get array of products
+  const products = newObj.product
 
-  if (objKeywords) {
-    //Loop through each key in the settings
-    for (let key in groupSetting) {
-      if (groupSetting.hasOwnProperty(key)) {
-        const groupName = key;
-        const groupArr = groupSetting[key];
-        let hasKeyword = 0;
+  // For each product in the products array
+  for (let i = 0; i < products.length; i++) {
+    for (group in ProductGroups) {
+      if (ProductGroups[group].indexOf(products[i]) !== -1) {
 
-        //Loop through each value of the group's array
-        groupArr.forEach(function(keyword){
-          //Compare the value to see if it exists in obj.Keywords
-          if(objKeywords.indexOf(keyword) !== -1) {
-            hasKeyword = 1;
-          }
-        });
-
-        if(hasKeyword === 1) {
-          groupHolder.push(groupName);
+        if (newObj.productgroup.indexOf(group) == -1) {
+          newObj.productgroup.push(group)
         }
 
-      } else {
-        console.error('====WARNING====');
-        console.error('Group Search Failed');
       }
     }
-
-    return groupHolder.join(',');
   }
 
 }
+
+module.exports = groupSearch
