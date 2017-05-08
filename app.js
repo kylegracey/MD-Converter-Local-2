@@ -54,7 +54,7 @@ const parseMD = function(data) {
   data.forEach(function(obj) {
     // Get the object
     // let obj = data[i]
-    console.log(obj.FileName)
+    // console.log(obj.FileName)
     let newObj = {
       "Asset Name" : trimExtension(obj),
       "Asset Description" : getDescription(obj),
@@ -86,7 +86,7 @@ const parseMD = function(data) {
       assetstatus : "",
       market : [],
       platformrights : [],
-      jobid : []
+      jobid : [],
     };
 
     sortKeywords(obj, newObj)
