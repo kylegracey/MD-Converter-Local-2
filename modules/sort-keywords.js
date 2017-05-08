@@ -4,6 +4,7 @@ const wordSearch = require('./word-search')
 const productSizeTerms = getSetting("Product Size")
 
 const sortHSLogic = function(objHS, hsArr, newObj) {
+
   if (hsArr.length == 1) {
   // If Single Tier
   // Expired or just a tag
@@ -19,10 +20,19 @@ const sortHSLogic = function(objHS, hsArr, newObj) {
     }
   } else {
     // Two+ tier
+
+    // Category Exceptions
+    if (hsArr[0] == "Marks") {
+      hsArr[0] = "Team Marks"
+    }
+
+    // Start
     let category = hsArr[0].toLowerCase().replace(/\s/g, '');
 
     if (newObj.hasOwnProperty(category)) {
       // If category matches one in object, push the second string from array into appropriate category.
+
+      // Tag Exceptions
       if (hsArr[1] == "Backgrounds") {
         hsArr[1] = "Backgrounds & Textures"
       }

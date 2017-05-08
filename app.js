@@ -13,8 +13,8 @@ const evalJSON = require('./modules/eval-json')
 
 // const inputPath = process.argv[2]
 // const outputPath = process.argv[3]
-const inputPath = './files/targetexport.json'
-const outputPath = './files/output.csv'
+const inputPath = './files/gatoradeinput.json'
+const outputPath = './files/gatorade.csv'
 
 const jsonData = require(inputPath)
 
@@ -50,6 +50,7 @@ const parseMD = function(data) {
   data.forEach(function(obj) {
     // Get the object
     // let obj = data[i]
+    console.log(obj.FileName)
     let newObj = {
       "Asset Name" : trimExtension(obj),
       "Asset Description" : getDescription(obj),
@@ -65,7 +66,7 @@ const parseMD = function(data) {
       clientteam : getSetting("Client Team"),
       assettype : [],
       assetsubtype : [],
-      year : "",
+      year : [],
       campaign : [],
       productgroup : groupSearch(obj.Keywords),
       product : [],
@@ -84,16 +85,19 @@ const parseMD = function(data) {
       jobid : []
     };
 
-    newObj.year = newObj.Created.substring(0,4)
     sortKeywords(obj, newObj)
+    if (newObj.year.length == 0) {
+      newObj.year.push(newObj.Created.substring(0,4))
+    }
     joinArrays(newObj)
     jsonOutput.push(newObj)
 
   })
 
+  writeCsvFile(jsonOutput)
+
   evalJSON(jsonOutput)
 
-  writeCsvFile(jsonOutput)
 }
 
 parseMD(jsonData)
