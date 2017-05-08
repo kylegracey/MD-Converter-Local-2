@@ -9,6 +9,10 @@ const altKeywords = {
 
 const wordSearch = function(objKeywordArr, newObj) {
 
+  if (!Array.isArray(objKeywordArr)) {
+    objKeywordArr = objKeywordArr.split(', ')
+  }
+
   // Look for altKeywords and remap any matches
   for (key in altKeywords) {
     for (let i = 0; i < objKeywordArr.length; i++) {
