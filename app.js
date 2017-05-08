@@ -9,7 +9,10 @@ const groupSearch = require('./modules/group-search')
 const sortKeywords = require('./modules/sort-keywords')
 const getDescription = require('./modules/get-description')
 const getCreateDate = require('./modules/get-create-date')
+
+// Evaluate & Debug
 const evalJSON = require('./modules/eval-json')
+const evalTags = require('./modules/eval-tags')
 
 // const inputPath = process.argv[2]
 // const outputPath = process.argv[3]
@@ -19,6 +22,7 @@ const outputPath = './files/gatorade.csv'
 const jsonData = require(inputPath)
 
 let jsonOutput = []
+let TagTracker = []
 
 function writeCsvFile(data) {
   // Convert jsonOutput back to CSV
@@ -34,6 +38,20 @@ function writeCsvFile(data) {
     console.log('Writing to csv/output.csv');
   });
 
+}
+
+const pushTags = function(objTags) {
+  objTags.forEach(function(tag) {
+    if (TagTracker.indexOf(tag) == -1) {
+      TagTracker.push(tag)
+    }
+  })
+}
+
+const writeTxtFile = function(TagString) {
+  fs.writeFile('./files/_All-Tags.txt', TagString, function(err) {
+    if (err) return console.log(err)
+  })
 }
 
 const joinArrays = function(obj) {
@@ -86,17 +104,25 @@ const parseMD = function(data) {
     };
 
     sortKeywords(obj, newObj)
+    // Year fallback
     if (newObj.year.length == 0) {
       newObj.year.push(newObj.Created.substring(0,4))
     }
+
+    //Push tags into TagTracker
+    pushTags(newObj.Tags)
+
+    // Join arrays and push output
     joinArrays(newObj)
     jsonOutput.push(newObj)
 
   })
 
   writeCsvFile(jsonOutput)
-
   evalJSON(jsonOutput)
+
+  // Write out all tags
+  writeTxtFile(TagTracker.join('\n'))
 
 }
 
