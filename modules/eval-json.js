@@ -75,7 +75,7 @@ const evalJSON = function(jsonInput) {
 
     } else if (obj.Created == "2012-01-01") {
       obj["No Date"] = "Set to Default Date: 2012-01-01"
-      NoDateCount++
+      ModDateCount++
       MinorErrorCount++
       errObject = true
     }
@@ -127,8 +127,8 @@ const evalJSON = function(jsonInput) {
     console.log(`
       ========== WARNING: CRITICAL ERRORS FOUND ==========
       ${critErrObjects.length} files with ${CritErrorCount} total critical errors found
-      ${MissingMandatory} mandatory field(s) missing.
-      ${NoDateCount} files missing a date.
+        ${MissingMandatory} mandatory field(s) missing.
+        ${NoDateCount} files missing a date.
 
       These can cause major problems.
       Fix files and Re-run script before uploading to Bynder
@@ -138,9 +138,9 @@ const evalJSON = function(jsonInput) {
     console.log(`
       ========== MINOR ERRORS FOUND ==========
       ${errObjects.length} files with ${MinorErrorCount} minor errors found
-      ${NoTagsCount} files missing all tags.
-      ${ModDateCount} files with date warnings.
-      See Error log for details.
+        ${NoTagsCount} files missing all tags.
+        ${ModDateCount} files with date warnings.
+        See Error log for details.
       `);
   } else {
     console.log('All good! No errors found.')
