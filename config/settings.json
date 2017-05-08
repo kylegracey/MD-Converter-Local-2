@@ -264,6 +264,17 @@
         "Softball",
         "Volleyball"
       ]
+    },
+    "Keyword Remaps" : {
+      "Person" : ["Athlete"],
+      "Team Marks" : ["Marks"],
+      "Blender Bottle" : ["Shaker Bottle", "Rec Bottle"],
+      "Backgrounds & Textures" : ["Backgrounds", "Details"],
+      "Expired" : ["Asset Expired"],
+      "Energy Chews" : ["Prime Chews"],
+      "Gx Bottle" : ["Gx"],
+      "Product Close Up" : ["Product Hero"],
+      "Whey Protein Bar" : ["Recover Bar"]
     }
   }
 ]

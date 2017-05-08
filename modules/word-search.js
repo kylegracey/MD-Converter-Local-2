@@ -1,18 +1,14 @@
 const getSetting = require('./get-setting')
 const KeywordCats = getSetting("KeywordCats")
 
-const altKeywords = {
-  "Blender Bottle" : ["Shaker Bottle", "Rec Bottle"],
-  "Whey Protein Bar" : ["Recover Bar"],
-  "Backgrounds & Textures" : ["Backgrounds"]
-}
+const altKeywords = getSetting("Keyword Remaps")
 
 const wordSearch = function(objKeywordArr, newObj) {
   // If a string is passed in, make it an array
   if (!Array.isArray(objKeywordArr)) {
     objKeywordArr = [objKeywordArr]
   }
- 
+
   // Look for altKeywords and remap any matches
   for (key in altKeywords) {
     for (let i = 0; i < objKeywordArr.length; i++) {
@@ -39,11 +35,6 @@ const wordSearch = function(objKeywordArr, newObj) {
           foundKeyword = true
           // Found a match in this category's array
           let category = Cat.toLowerCase().replace(/\s/g, '');
-
-          // Exceptions
-          if (category === "marks") {
-            category = "teammarks"
-          }
 
           // Check if tag exists in category already. If not, push into newObj[category]
           // console.log(`Found a match! Pushing ${objKeywordArr[i]} into ${category}`)
