@@ -44,7 +44,9 @@ const sortHSLogic = function(hsArr, newObj) {
   // Expired or just a tag
     if (hsArr[0] == "Expired") {
       // Asset is Expired
-      if (newObj.assetstatus == "") { newObj.assetstatus = "Expired" }
+      if (newObj.assetstatus.indexOf("Expired") == -1) {
+        newObj.assetstatus.push("Expired")
+      }
 
     } else {
       // It's a tag
