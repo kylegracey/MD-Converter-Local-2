@@ -16,6 +16,27 @@ const altKeywords = {
   "Whey Protein Bar" : ["Recover Bar"]
 }
 
+const remapCheck = function(Keywords) {
+  //Takes an array of keywords, loops through and remaps any of them.
+  if (!Array.isArray(Keywords)) {
+    Keywords = Keywords.split(', ')
+  }
+
+  let keywords = Keywords
+
+  for (key in altKeywords) {
+    for (let i = 0; i < keywords.length; i++) {
+      if (altKeywords[key].indexOf(keywords[i]) !== -1) {
+        // console.log(`Remap check: ${keywords[i]} to ${key}`)
+        Keywords[i] = key
+      }
+    }
+  }
+
+  return keywords
+
+}
+
 const sortHSLogic = function(hsArr, newObj) {
 
   if (hsArr.length == 1) {
@@ -80,40 +101,17 @@ const sortHS = function (objHS, newObj) {
   // If not array
   if (typeof objHS == "string") {
     let hsArr = objHS.split('|')
-    hsArr = remapCheck(hsArr)
-    sortHSLogic(hsArr, newObj)
+    sortHSLogic(remapCheck(hsArr), newObj)
   } else if (Array.isArray(objHS)) {
     // If array
     objHS.forEach(function(hs) {
       // For each string containing a set of hierarchical subject tags. Ex:
       // 'Product|Protein Powder|Individual Packet'
       hsArr = hs.split('|')
-      hsArr = remapCheck(hsArr)
-      sortHSLogic(hsArr, newObj)
+      sortHSLogic(remapCheck(hsArr), newObj)
 
     })
   }
-
-}
-
-const remapCheck = function(Keywords) {
-  //Takes an array of keywords, loops through and remaps any of them.
-  if (!Array.isArray(Keywords)) {
-    Keywords = Keywords.split(', ')
-  }
-
-  let keywords = Keywords
-
-  for (key in altKeywords) {
-    for (let i = 0; i < keywords.length; i++) {
-      if (altKeywords[key].indexOf(keywords[i]) !== -1) {
-        // console.log(`Remap check: ${keywords[i]} to ${key}`)
-        Keywords[i] = key
-      }
-    }
-  }
-
-  return keywords
 
 }
 
