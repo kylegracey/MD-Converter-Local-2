@@ -13,7 +13,7 @@ const sortHSLogic = function(objHS, hsArr, newObj) {
       if (newObj.assetstatus == "") { newObj.assetstatus = "Expired" }
 
     } else {
-      // It's just a tag
+      // It's a tag
       if(newObj.Tags.indexOf(objHS) == -1) {
         newObj.Tags.push(objHS)
       }
@@ -47,6 +47,8 @@ const sortHSLogic = function(objHS, hsArr, newObj) {
       }
 
     } else {
+      // Didn't find a category match. Need to check keywords.
+
       if(newObj.Tags.indexOf(hsArr[1]) == -1) {
         newObj.Tags.push(hsArr[1])
       }
@@ -97,11 +99,15 @@ const sortHS = function (objHS, newObj) {
 
 const sortKeywords = function(obj, newObj) {
   let newObjTags = []
-  if (obj.HierarchicalSubject) {
-    sortHS(obj.HierarchicalSubject, newObj)
-  } else if (obj.Keywords) {
+  // if (obj.HierarchicalSubject) {
+  //   newObj.sorttype = "Hierarchical Subject"
+  //   sortHS(obj.HierarchicalSubject, newObj)
+  // } else
+  if (obj.Keywords) {
+    newObj.sorttype = "Keywords"
     wordSearch(obj.Keywords, newObj)
   } else if (obj.Subject) {
+    newObj.sorttype = "Subject"
     wordSearch(obj.Subject, newObj)
   } else {
     (`!!!!Warning!!!! ${obj.FileName} has no keywords!!!!`)
