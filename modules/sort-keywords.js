@@ -3,28 +3,36 @@ const wordSearch = require('./word-search')
 
 const productSizeTerms = getSetting("Product Size")
 
-const sortHSLogic = function(objHS, hsArr, newObj) {
+const altKeywords = {
+  // Group Word Remapping
+  "Person" : ["Athlete"],
+  "Team Marks" : ["Marks"],
+
+  // Keyword Remapping
+  "Blender Bottle" : ["Shaker Bottle", "Rec Bottle"],
+  "Backgrounds & Textures" : ["Backgrounds"],
+  "Expired" : ["Asset Expired"],
+  "Gx Bottle" : ["Gx"],
+  "Whey Protein Bar" : ["Recover Bar"]
+}
+
+const sortHSLogic = function(hsArr, newObj) {
 
   if (hsArr.length == 1) {
   // If Single Tier
   // Expired or just a tag
-    if (hsArr[0] == "Asset Expired") {
+    if (hsArr[0] == "Expired") {
       // Asset is Expired
       if (newObj.assetstatus == "") { newObj.assetstatus = "Expired" }
 
     } else {
       // It's a tag
-      if(newObj.Tags.indexOf(objHS) == -1) {
-        newObj.Tags.push(objHS)
+      if(newObj.Tags.indexOf(hsArr[0]) == -1) {
+        newObj.Tags.push(hsArr[0])
       }
     }
   } else {
     // Two+ tier
-
-    // Category Exceptions
-    if (hsArr[0] == "Marks") {
-      hsArr[0] = "Team Marks"
-    }
 
     // Start
     let category = hsArr[0].toLowerCase().replace(/\s/g, '');
@@ -32,20 +40,9 @@ const sortHSLogic = function(objHS, hsArr, newObj) {
     if (newObj.hasOwnProperty(category)) {
       // If category matches one in object, push the second string from array into appropriate category.
 
-      // Tag Exceptions
-      if (hsArr[1] == "Backgrounds") {
-        hsArr[1] = "Backgrounds & Textures"
-      }
-
       if(newObj[category].indexOf(hsArr[1]) == -1) {
         newObj[category].push(hsArr[1])
       }
-    } else if (category == "athlete"){
-      //Athlete exception. Remap to 'person'
-      if(newObj.person.indexOf(hsArr[1]) == -1) {
-        newObj.person.push(hsArr[1])
-      }
-
     } else {
       // Didn't find a category match. Need to check keywords.
 
@@ -83,31 +80,50 @@ const sortHS = function (objHS, newObj) {
   // If not array
   if (typeof objHS == "string") {
     let hsArr = objHS.split('|')
-    sortHSLogic(objHS, hsArr, newObj)
+    hsArr = remapCheck(hsArr)
+    sortHSLogic(hsArr, newObj)
   } else if (Array.isArray(objHS)) {
     // If array
     objHS.forEach(function(hs) {
       // For each string containing a set of hierarchical subject tags. Ex:
       // 'Product|Protein Powder|Individual Packet'
       hsArr = hs.split('|')
-      sortHSLogic(objHS, hsArr, newObj)
+      hsArr = remapCheck(hsArr)
+      sortHSLogic(hsArr, newObj)
 
     })
   }
 
 }
 
+const remapCheck = function(Keywords) {
+  //Takes an array of keywords, loops through and remaps any of them.
+  if (!Array.isArray(Keywords)) {
+    Keywords = Keywords.split(', ')
+  }
+
+  let keywords = Keywords
+
+  for (key in altKeywords) {
+    for (let i = 0; i < keywords.length; i++) {
+      if (altKeywords[key].indexOf(keywords[i]) !== -1) {
+        // console.log(`Remap check: ${keywords[i]} to ${key}`)
+        Keywords[i] = key
+      }
+    }
+  }
+
+  return keywords
+
+}
+
 const sortKeywords = function(obj, newObj) {
   let newObjTags = []
-  // if (obj.HierarchicalSubject) {
-  //   newObj.sorttype = "Hierarchical Subject"
-  //   sortHS(obj.HierarchicalSubject, newObj)
-  // } else
-  if (obj.Keywords) {
-    newObj.sorttype = "Keywords"
+  if (obj.HierarchicalSubject) {
+    sortHS(obj.HierarchicalSubject, newObj)
+  } else if (obj.Keywords) {
     wordSearch(obj.Keywords, newObj)
   } else if (obj.Subject) {
-    newObj.sorttype = "Subject"
     wordSearch(obj.Subject, newObj)
   } else {
     (`!!!!Warning!!!! ${obj.FileName} has no keywords!!!!`)
