@@ -2,7 +2,6 @@ const fs = require('fs')
 const csvjson = require('csvjson')
 
 // MODULES
-// const findValues = require('./modules/find-values')
 const trimExtension = require('./modules/trim-extension')
 const getSetting = require('./modules/get-setting')
 const groupSearch = require('./modules/group-search')
@@ -14,13 +13,14 @@ const getCreateDate = require('./modules/get-create-date')
 const evalJSON = require('./modules/eval-json')
 const evalTags = require('./modules/eval-tags')
 
+// Input and Output Options
 // const inputPath = process.argv[2]
 // const outputPath = process.argv[3]
 const inputPath = './files/gatoradeinput.json'
 const outputPath = './files/gatorade.csv'
-
 const jsonData = require(inputPath)
 
+// Output Variables
 let jsonOutput = []
 let TagTracker = []
 
