@@ -2,8 +2,18 @@ const fs = require('fs')
 const csvjson = require('csvjson')
 
 let CritErrorCount = 0
+let MinorErrorCount = 0
+let MissingMandatory = 0
 let NoDateCount = 0
+let ModDateCount = 0
 let NoTagsCount = 0
+
+const mandatoryFields = [
+  "Asset Name",
+  "BrandSubbrand",
+  "Path to Assets",
+  "Archived"
+]
 
 const tagCats = [
   "Tags",
@@ -45,15 +55,32 @@ const evalJSON = function(jsonInput) {
     let critErrObject = false
     let hasTag = false
 
+    // Check Mandatory Fields
+
+    mandatoryFields.forEach(function(cat) {
+      if (obj[cat] == "" || obj[cat] == undefined) {
+        obj[cat] = `!!!${cat} MISSING!!!`
+        CritErrorCount++
+        MissingMandatory++
+        critErrObject = true
+      }
+    })
+
+    // Non-Mandatory Field Checks
+
     if (obj.Created == "") {
-      obj["No Date"] = "!!!DATE MISSING!!!"
-      CritErrorCount++
-      critErrObject = true
+      obj["No Date"] = "Date Missing!"
+      MinorErrorCount++
+      errObject = true
+
     } else if (obj.Created == "2012-01-01") {
       obj["No Date"] = "Set to Default Date: 2012-01-01"
       NoDateCount++
+      MinorErrorCount++
       errObject = true
     }
+
+    // Check for Tags
 
     tagCats.forEach(function(cat) {
       if (obj[cat] !== "" && obj[cat] !== undefined) {
@@ -63,8 +90,8 @@ const evalJSON = function(jsonInput) {
 
     if (!hasTag) {
       obj["No Tags"] = "!!!No Tags Found!!!"
-      CritErrorCount++
-      critErrObject = true
+      MinorErrorCount++
+      errObject = true
       NoTagsCount++
     }
 
@@ -88,21 +115,36 @@ const evalJSON = function(jsonInput) {
   let critErrObjectsFormatted = []
   critErrObjects.forEach(function(errObj){
     let newErrObj = {
+      "Path to Assets": errObj["Path to Assets"],
       "Asset Name": errObj["Asset Name"],
       "Date": errObj["No Date"],
-      "Tags": errObj["No Tags"],
-      "Path to Assets": errObj["Path to Assets"]
+      "Tags": errObj["No Tags"]
     }
     critErrObjectsFormatted.push(newErrObj)
   })
 
-  console.log(`
-    ========== WARNING ==========
-    ${CritErrorCount} Critical Errors
-    ${NoTagsCount} files with missing all tags.
-    ${NoDateCount} files with date warnings.
-    See Error log for details.
-    `);
+  if (CritErrorCount > 0) {
+    console.log(`
+      ========== WARNING: CRITICAL ERRORS FOUND ==========
+      ${critErrObjects.length} files with ${CritErrorCount} total critical errors found
+      ${MissingMandatory} mandatory field(s) missing.
+      ${NoDateCount} files missing a date.
+
+      These can cause major problems.
+      Fix files and Re-run script before uploading to Bynder
+      See Error log for details.
+      `);
+  } else if (MinorErrorCount > 0) {
+    console.log(`
+      ========== MINOR ERRORS FOUND ==========
+      ${errObjects.length} files with ${MinorErrorCount} minor errors found
+      ${NoTagsCount} files missing all tags.
+      ${ModDateCount} files with date warnings.
+      See Error log for details.
+      `);
+  } else {
+    console.log('All good! No errors found.')
+  }
 
   writeLog(errObjectsFormatted, "_MinorErrorLog")
   writeLog(critErrObjectsFormatted, "_CriticalErrorLog")
