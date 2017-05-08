@@ -2,23 +2,27 @@ const fs = require('fs')
 const csvjson = require('csvjson')
 
 // MODULES
-// const findValues = require('./modules/find-values')
 const trimExtension = require('./modules/trim-extension')
 const getSetting = require('./modules/get-setting')
 const groupSearch = require('./modules/group-search')
 const sortKeywords = require('./modules/sort-keywords')
 const getDescription = require('./modules/get-description')
 const getCreateDate = require('./modules/get-create-date')
-const evalJSON = require('./modules/eval-json')
 
+// Evaluate & Debug
+const evalJSON = require('./modules/eval-json')
+const evalTags = require('./modules/eval-tags')
+
+// Input and Output Options
 // const inputPath = process.argv[2]
 // const outputPath = process.argv[3]
 const inputPath = './files/gatoradeinput.json'
 const outputPath = './files/gatorade.csv'
-
 const jsonData = require(inputPath)
 
+// Output Variables
 let jsonOutput = []
+let TagTracker = []
 
 function writeCsvFile(data) {
   // Convert jsonOutput back to CSV
@@ -86,17 +90,25 @@ const parseMD = function(data) {
     };
 
     sortKeywords(obj, newObj)
+    // Year fallback
     if (newObj.year.length == 0) {
       newObj.year.push(newObj.Created.substring(0,4))
     }
+
+    //Push tags into TagTracker
+    for (let i = 0; i < newObj.Tags.length; i++) {
+      TagTracker.push(newObj.Tags[i])
+    }
+
+    // Join arrays and push output
     joinArrays(newObj)
     jsonOutput.push(newObj)
 
   })
 
   writeCsvFile(jsonOutput)
-
   evalJSON(jsonOutput)
+  evalTags(TagTracker)
 
 }
 
