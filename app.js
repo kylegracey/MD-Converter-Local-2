@@ -40,20 +40,6 @@ function writeCsvFile(data) {
 
 }
 
-const pushTags = function(objTags) {
-  objTags.forEach(function(tag) {
-    if (TagTracker.indexOf(tag) == -1) {
-      TagTracker.push(tag)
-    }
-  })
-}
-
-const writeTxtFile = function(TagString) {
-  fs.writeFile('./files/_All-Tags.txt', TagString, function(err) {
-    if (err) return console.log(err)
-  })
-}
-
 const joinArrays = function(obj) {
   //Find all arrays in new object and join them into a string for csv output
   for (var key in obj) {
@@ -110,7 +96,9 @@ const parseMD = function(data) {
     }
 
     //Push tags into TagTracker
-    pushTags(newObj.Tags)
+    for (let i = 0; i < newObj.Tags.length; i++) {
+      TagTracker.push(newObj.Tags[i])
+    }
 
     // Join arrays and push output
     joinArrays(newObj)
@@ -120,9 +108,7 @@ const parseMD = function(data) {
 
   writeCsvFile(jsonOutput)
   evalJSON(jsonOutput)
-
-  // Write out all tags
-  writeTxtFile(TagTracker.join('\n'))
+  evalTags(TagTracker)
 
 }
 
