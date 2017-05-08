@@ -1,21 +1,20 @@
 const getSetting = require('./get-setting')
 const wordSearch = require('./word-search')
 
-const productSizeTerms = getSetting("Product Size")
-
-const altKeywords = {
-  // Group Word Remapping
-  "Person" : ["Athlete"],
-  "Team Marks" : ["Marks"],
-  // Keyword Remapping
-  "Blender Bottle" : ["Shaker Bottle", "Rec Bottle"],
-  "Backgrounds & Textures" : ["Backgrounds", "Details"],
-  "Expired" : ["Asset Expired"],
-  "Energy Chews" : ["Prime Chews"],
-  "Gx Bottle" : ["Gx"],
-  "Product Close Up" : ["Product Hero"],
-  "Whey Protein Bar" : ["Recover Bar"]
-}
+const altKeywords = getSetting("Keyword Remaps")
+// {
+//   // Group Word Remapping
+//   "Person" : ["Athlete"],
+//   "Team Marks" : ["Marks"],
+//   // Keyword Remapping
+//   "Blender Bottle" : ["Shaker Bottle", "Rec Bottle"],
+//   "Backgrounds & Textures" : ["Backgrounds", "Details"],
+//   "Expired" : ["Asset Expired"],
+//   "Energy Chews" : ["Prime Chews"],
+//   "Gx Bottle" : ["Gx"],
+//   "Product Close Up" : ["Product Hero"],
+//   "Whey Protein Bar" : ["Recover Bar"]
+// }
 
 const remapCheck = function(Keywords) {
   //Takes an array of keywords, loops through and remaps any of them.
