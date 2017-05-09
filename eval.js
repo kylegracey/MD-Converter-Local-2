@@ -1,18 +1,21 @@
 const fs = require('fs')
 const csvjson = require('csvjson')
+const evalJSON = require('./modules/eval-json')
 
-const CsvPath = './files/gatorade.csv'
-const CsvData = require(CsvPath)
+const CsvPath = process.argv[2]
 
-const CsvToJsonOptions = {
+const csvjsonOptions = {
     // headers   : "key",
     delimiter   : ";"
 }
 
-const ConvertToJSON = function(data) {
-  let jsonConvertInput = csvjson.toObject(data, CsvToJsonOptions);
-  // evalJSON(jsonConvertInput)
-  console.log(jsonConvertInput)
+const readConvert = function() {
+  fs.readFile(CsvPath, 'utf8', parseCB);
 }
 
-ConvertToJSON(CsvData)
+const parseCB = function(err, data) {
+  let jsonData = csvjson.toObject(data, csvjsonOptions);
+  evalJSON(jsonData)
+}
+
+readConvert()
