@@ -53,9 +53,17 @@ const writeLog = function(logData, fname) {
   })
 }
 
-const evalJSON = function(jsonInput) {
+const evalJSON = function(jsonInput, MassUpload) {
   let errObjects = []
   let critErrObjects = []
+
+  let AssetName = ""
+
+  if (MassUpload) {
+    AssetName = "name"
+  } else {
+    AssetName = "Asset Name"
+  }
 
   jsonInput.forEach(function(obj) {
     // console.log(`Checking ${obj["Asset Name"]}`)
@@ -64,7 +72,7 @@ const evalJSON = function(jsonInput) {
     let hasTag = false
 
     let critErrObject = {
-      "Asset Name": obj["Asset Name"],
+      "Asset Name": obj[AssetName],
       "Special Characters" : [],
       "Mandatory Fields Missing": [],
       "Created": [],
@@ -74,7 +82,7 @@ const evalJSON = function(jsonInput) {
     }
 
     let errObject = {
-      "Asset Name": obj["Asset Name"],
+      "Asset Name": obj[AssetName],
       "Date": [],
       "Tags": [],
     }
@@ -112,7 +120,8 @@ const evalJSON = function(jsonInput) {
     })
 
     // Check for Hidden files
-    if (obj["Asset Name"].indexOf(".") == 0) {
+
+    if (obj[AssetName].indexOf(".") == 0) {
       critErrObject["Hidden Files"].push("Hidden File Found!")
       CritErrorCount++
       HiddenFileCount++
@@ -120,7 +129,7 @@ const evalJSON = function(jsonInput) {
     }
 
     // Date Formats
-    if (obj.Created.indexOf("-") == 4 && obj.Created.lastIndexOf("-") == 7) {
+    if (!MassUpload && obj.Created.indexOf("-") == 4 && obj.Created.lastIndexOf("-") == 7) {
       let CreatedArr = obj.Created.split('-')
       for (let i=0; i<CreatedArr.length; i++) {
         if (CreatedArr[i].match(/^[0-9]+$/) == null) {

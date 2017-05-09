@@ -113,7 +113,7 @@ const parseMassUpload = function(data) {
   })
 
   writeCsvFile(jsonOutput, outputPath)
-  // evalJSON(jsonOutput)
+  evalJSON(jsonOutput, MassUpload)
   evalTags(TagTracker)
 
 }
