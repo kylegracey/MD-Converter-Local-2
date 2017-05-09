@@ -5,8 +5,9 @@ let CritErrorCount = 0
 let MinorErrorCount = 0
 let MissingMandatory = 0
 let YearErrCount = 0
+let HiddenFileCount = 0
+
 let NoDateCount = 0
-let ModDateCount = 0
 let NoTagsCount = 0
 
 const mandatoryFields = [
@@ -61,6 +62,7 @@ const evalJSON = function(jsonInput) {
       "Asset Name": obj["Asset Name"],
       "Mandatory Fields Missing": [],
       "year": [],
+      "Hidden Files": [],
       "Path to Assets": obj["Path to Assets"]
     }
 
@@ -80,8 +82,16 @@ const evalJSON = function(jsonInput) {
       }
     })
 
-    // Check Date Formats
-    if (obj.year.match(/^[0-9]+$/) == null) {
+      // Check for Hidden files
+    if (obj["Asset Name"].indexOf(".") == 0) {
+      critErrObject["Hidden Files"].push("Hidden File Found!")
+      CritErrorCount++
+      HiddenFileCount++
+      CritErrObjectExists = true
+    }
+
+      // Date Formats
+    if (obj.year !== undefined && obj.year !== "" && obj.year.match(/^[0-9]+$/) == null) {
       CritErrorCount++
       YearErrCount++
       CritErrObjectExists = true
@@ -90,15 +100,10 @@ const evalJSON = function(jsonInput) {
 
     // Non-Mandatory Field Checks
 
-    if (obj.Created == "") {
+    if (obj.Created == "" || obj.Created == undefined) {
       errObject.Date.push("Date Missing")
       MinorErrorCount++
-      errObjectExists = true
-
-    } else if (obj.Created == "2012-01-01") {
-      errObject.Date.push("Set to Default Date: 2012-01-01")
-      ModDateCount++
-      MinorErrorCount++
+      NoDateCount++
       errObjectExists = true
     }
 
@@ -126,8 +131,8 @@ const evalJSON = function(jsonInput) {
       ========== WARNING: CRITICAL ERRORS FOUND ==========
       ${critErrObjects.length} files with ${CritErrorCount} total critical errors found
           ${MissingMandatory} mandatory field(s) missing.
-          ${NoDateCount} files missing a date.
           ${YearErrCount} files with incorrectly formatted year.
+          ${HiddenFileCount} hidden files found.
 
       These can cause major problems.
       Fix files and Re-run script before uploading to Bynder
@@ -140,7 +145,7 @@ const evalJSON = function(jsonInput) {
       ========== MINOR ERRORS FOUND ==========
       ${errObjects.length} files with ${MinorErrorCount} minor errors found
           ${NoTagsCount} files missing all tags.
-          ${ModDateCount} files with date warnings.
+          ${NoDateCount} files with date warnings.
       See Error log for details.
       `);
   } else {
