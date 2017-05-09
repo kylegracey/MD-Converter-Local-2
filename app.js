@@ -8,6 +8,7 @@ const groupSearch = require('./modules/group-search')
 const sortKeywords = require('./modules/sort-keywords')
 const getDescription = require('./modules/get-description')
 const getCreateDate = require('./modules/get-create-date')
+const writeCsvFile = require('./modules/write-csv')
 
 // Evaluate & Debug
 const evalJSON = require('./modules/eval-json')
@@ -24,21 +25,21 @@ const jsonData = require(inputPath)
 let jsonOutput = []
 let TagTracker = []
 
-function writeCsvFile(data) {
-  // Convert jsonOutput back to CSV
-  const jsonToCsvOptions = {
-      headers   : "key",
-      delimiter   : ";"
-  }
-  const csvOutput = csvjson.toCSV(data, jsonToCsvOptions);
-
-  // Write CSV to output file
-  fs.writeFile(outputPath, csvOutput, function (err) {
-    if (err) return console.log(err);
-    console.log('Writing to csv/output.csv');
-  });
-
-}
+// function writeCsvFile(data) {
+//   // Convert jsonOutput back to CSV
+//   const jsonToCsvOptions = {
+//       headers   : "key",
+//       delimiter   : ";"
+//   }
+//   const csvOutput = csvjson.toCSV(data, jsonToCsvOptions);
+//
+//   // Write CSV to output file
+//   fs.writeFile(outputPath, csvOutput, function (err) {
+//     if (err) return console.log(err);
+//     console.log('Writing to csv/output.csv');
+//   });
+//
+// }
 
 const joinArrays = function(obj) {
   //Find all arrays in new object and join them into a string for csv output
@@ -107,7 +108,7 @@ const parseMD = function(data) {
 
   })
 
-  writeCsvFile(jsonOutput)
+  writeCsvFile(jsonOutput, outputPath)
   evalJSON(jsonOutput)
   evalTags(TagTracker)
 
