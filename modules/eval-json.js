@@ -4,6 +4,7 @@ const csvjson = require('csvjson')
 let CritErrorCount = 0
 let MinorErrorCount = 0
 let MissingMandatory = 0
+let CreatedFormatErrCount = 0
 let YearErrCount = 0
 let HiddenFileCount = 0
 
@@ -61,6 +62,7 @@ const evalJSON = function(jsonInput) {
     let critErrObject = {
       "Asset Name": obj["Asset Name"],
       "Mandatory Fields Missing": [],
+      "Created": [],
       "year": [],
       "Hidden Files": [],
       "Path to Assets": obj["Path to Assets"]
@@ -72,7 +74,7 @@ const evalJSON = function(jsonInput) {
       "Tags": [],
     }
 
-    // Check Mandatory Fields
+    // ======== Check Mandatory Fields ========
     mandatoryFields.forEach(function(cat) {
       if (obj[cat] == "" || obj[cat] == undefined) {
         critErrObject["Mandatory Fields Missing"].push(cat)
@@ -82,7 +84,7 @@ const evalJSON = function(jsonInput) {
       }
     })
 
-      // Check for Hidden files
+    // Check for Hidden files
     if (obj["Asset Name"].indexOf(".") == 0) {
       critErrObject["Hidden Files"].push("Hidden File Found!")
       CritErrorCount++
@@ -90,7 +92,24 @@ const evalJSON = function(jsonInput) {
       CritErrObjectExists = true
     }
 
-      // Date Formats
+    // Date Formats
+    if (obj.Created.indexOf("-") == 4 && obj.Created.lastIndexOf("-") == 7) {
+      let CreatedArr = obj.Created.split('-')
+      for (let i=0; i<CreatedArr.length; i++) {
+        if (CreatedArr[i].match(/^[0-9]+$/) == null) {
+          CritErrorCount++
+          CreatedFormatErrCount++
+          CritErrObjectExists = true
+          critErrObject.Created.push("Created set to: " + obj.Created)
+        }
+      }
+    } else {
+      CritErrorCount++
+      CreatedFormatErrCount++
+      CritErrObjectExists = true
+      critErrObject.Created.push("Created set to: " + obj.Created)
+    }
+
     if (obj.year !== undefined && obj.year !== "" && obj.year.match(/^[0-9]+$/) == null) {
       CritErrorCount++
       YearErrCount++
@@ -98,7 +117,7 @@ const evalJSON = function(jsonInput) {
       critErrObject.year.push("Year set to: " + obj.year)
     }
 
-    // Non-Mandatory Field Checks
+    // ======== Non-Mandatory Field Checks ========
 
     if (obj.Created == "" || obj.Created == undefined) {
       errObject.Date.push("Date Missing")
@@ -131,6 +150,7 @@ const evalJSON = function(jsonInput) {
       ========== WARNING: CRITICAL ERRORS FOUND ==========
       ${critErrObjects.length} files with ${CritErrorCount} total critical errors found
           ${MissingMandatory} mandatory field(s) missing.
+          ${CreatedFormatErrCount} files with incorrectly formatted Created field.
           ${YearErrCount} files with incorrectly formatted year.
           ${HiddenFileCount} hidden files found.
 
@@ -138,6 +158,8 @@ const evalJSON = function(jsonInput) {
       Fix files and Re-run script before uploading to Bynder
       See Error log for details.
       `);
+  } else {
+    console.log('No Critical errors found.')
   }
 
   if (MinorErrorCount > 0) {
@@ -149,7 +171,7 @@ const evalJSON = function(jsonInput) {
       See Error log for details.
       `);
   } else {
-    console.log('All good! No errors found.')
+    console.log('No Minor errors found.')
   }
 
   writeLog(errObjects, "_MinorErrorLog")
