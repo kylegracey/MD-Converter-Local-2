@@ -159,8 +159,8 @@ const parseMD = function(data) {
       MassUpload: false
     };
 
-    sortKeywords(obj, newObj, false)
-    groupSearch(newObj, false)
+    sortKeywords(obj, newObj)
+    groupSearch(newObj)
     delete newObj.MassUpload
 
     // Year fallback
