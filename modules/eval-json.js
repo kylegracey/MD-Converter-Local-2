@@ -4,6 +4,7 @@ const csvjson = require('csvjson')
 let CritErrorCount = 0
 let MinorErrorCount = 0
 let MissingMandatory = 0
+let YearErrCount = 0
 let NoDateCount = 0
 let ModDateCount = 0
 let NoTagsCount = 0
@@ -12,7 +13,8 @@ const mandatoryFields = [
   "Asset Name",
   "BrandSubbrand",
   "Path to Assets",
-  "Archived"
+  "Archived",
+  "assettype"
 ]
 
 const tagCats = [
@@ -51,37 +53,56 @@ const evalJSON = function(jsonInput) {
 
   jsonInput.forEach(function(obj) {
     // console.log(`Checking ${obj["Asset Name"]}`)
-    let errObject = false
-    let critErrObject = false
+    let errObjectExists = false
+    let CritErrObjectExists = false
     let hasTag = false
 
-    // Check Mandatory Fields
+    let critErrObject = {
+      "Asset Name": obj["Asset Name"],
+      "Mandatory Fields Missing": [],
+      "year": [],
+      "Path to Assets": obj["Path to Assets"]
+    }
 
+    let errObject = {
+      "Asset Name": obj["Asset Name"],
+      "Date": [],
+      "Tags": [],
+    }
+
+    // Check Mandatory Fields
     mandatoryFields.forEach(function(cat) {
       if (obj[cat] == "" || obj[cat] == undefined) {
-        obj[cat] = `!!!${cat} MISSING!!!`
+        critErrObject["Mandatory Fields Missing"].push(cat)
         CritErrorCount++
         MissingMandatory++
-        critErrObject = true
+        CritErrObjectExists = true
       }
     })
+
+    // Check Date Formats
+    if (obj.year.match(/^[0-9]+$/) == null) {
+      CritErrorCount++
+      YearErrCount++
+      CritErrObjectExists = true
+      critErrObject.year.push("Year set to: " + obj.year)
+    }
 
     // Non-Mandatory Field Checks
 
     if (obj.Created == "") {
-      obj["No Date"] = "Date Missing!"
+      errObject.Date.push("Date Missing")
       MinorErrorCount++
-      errObject = true
+      errObjectExists = true
 
     } else if (obj.Created == "2012-01-01") {
-      obj["No Date"] = "Set to Default Date: 2012-01-01"
-      NoDateCount++
+      errObject.Date.push("Set to Default Date: 2012-01-01")
+      ModDateCount++
       MinorErrorCount++
-      errObject = true
+      errObjectExists = true
     }
 
     // Check for Tags
-
     tagCats.forEach(function(cat) {
       if (obj[cat] !== "" && obj[cat] !== undefined) {
         hasTag = true
@@ -89,65 +110,45 @@ const evalJSON = function(jsonInput) {
     })
 
     if (!hasTag) {
-      obj["No Tags"] = "!!!No Tags Found!!!"
+      errObject.Tags.push("No Tags Found!")
       MinorErrorCount++
-      errObject = true
       NoTagsCount++
+      errObjectExists = true
     }
 
-    if (errObject) { errObjects.push(obj) }
-    if (critErrObject) { critErrObjects.push(obj) }
+    if (errObjectExists) { errObjects.push(errObject) }
+    if (CritErrObjectExists) { critErrObjects.push(critErrObject) }
 
-  })
-
-  // Reformat errObjects for log
-  let errObjectsFormatted = []
-  errObjects.forEach(function(errObj){
-    let newErrObj = {
-      "Asset Name": errObj["Asset Name"],
-      "Date": errObj["No Date"],
-      "Tags": errObj["No Tags"],
-      "Path to Assets": errObj["Path to Assets"]
-    }
-    errObjectsFormatted.push(newErrObj)
-  })
-
-  let critErrObjectsFormatted = []
-  critErrObjects.forEach(function(errObj){
-    let newErrObj = {
-      "Path to Assets": errObj["Path to Assets"],
-      "Asset Name": errObj["Asset Name"],
-      "Date": errObj["No Date"],
-      "Tags": errObj["No Tags"]
-    }
-    critErrObjectsFormatted.push(newErrObj)
   })
 
   if (CritErrorCount > 0) {
     console.log(`
       ========== WARNING: CRITICAL ERRORS FOUND ==========
       ${critErrObjects.length} files with ${CritErrorCount} total critical errors found
-      ${MissingMandatory} mandatory field(s) missing.
-      ${NoDateCount} files missing a date.
+          ${MissingMandatory} mandatory field(s) missing.
+          ${NoDateCount} files missing a date.
+          ${YearErrCount} files with incorrectly formatted year.
 
       These can cause major problems.
       Fix files and Re-run script before uploading to Bynder
       See Error log for details.
       `);
-  } else if (MinorErrorCount > 0) {
+  }
+
+  if (MinorErrorCount > 0) {
     console.log(`
       ========== MINOR ERRORS FOUND ==========
       ${errObjects.length} files with ${MinorErrorCount} minor errors found
-      ${NoTagsCount} files missing all tags.
-      ${ModDateCount} files with date warnings.
+          ${NoTagsCount} files missing all tags.
+          ${ModDateCount} files with date warnings.
       See Error log for details.
       `);
   } else {
     console.log('All good! No errors found.')
   }
 
-  writeLog(errObjectsFormatted, "_MinorErrorLog")
-  writeLog(critErrObjectsFormatted, "_CriticalErrorLog")
+  writeLog(errObjects, "_MinorErrorLog")
+  writeLog(critErrObjects, "_CriticalErrorLog")
 
 }
 

@@ -16,7 +16,7 @@ const evalTags = require('./modules/eval-tags')
 // Input and Output Options
 // const inputPath = process.argv[2]
 // const outputPath = process.argv[3]
-const inputPath = './files/gatoradeinput.json'
+const inputPath = './files/gatorade-5-9v1.json'
 const outputPath = './files/gatorade.csv'
 const jsonData = require(inputPath)
 
@@ -83,7 +83,7 @@ const parseMD = function(data) {
       gender : [],
       shottype : [],
       sport : [],
-      assetstatus : "",
+      assetstatus : [],
       market : [],
       platformrights : [],
       jobid : [],
