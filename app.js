@@ -17,13 +17,15 @@ const evalTags = require('./modules/eval-tags')
 // Input and Output Options
 // const inputPath = process.argv[2]
 // const outputPath = process.argv[3]
-const inputPath = './files/gatorade-5-9v2.json'
-const outputPath = './files/gatorade.csv'
+const inputPath = './files/massupload1.json'
+const outputPath = './files/mu-output1.csv'
 const jsonData = require(inputPath)
 
 // Brand Settings
-const brandfile = require('./config/brandfile')
+const brandfile = require('./config/brands/vml')
 const brandID = brandfile.VML
+
+const MassUpload = true
 
 // Output Variables
 let jsonOutput = []
@@ -52,6 +54,68 @@ const joinArrays = function(obj) {
          obj[key] = obj[key].join(',');
       }
   }
+}
+
+const parseMassUpload = function(data) {
+  // Loop through each object in Data
+  data.forEach(function(obj) {
+    // Get the object
+    // let obj = data[i]
+    // console.log(obj.FileName)
+    let newObj = {
+      "brand" : brandID,
+      "name" : trimExtension(obj),
+      "filename" : obj.FileName,
+      "tags" : [],
+      "File Extension": "",
+      "Group" : getSetting("Group"),
+      "Client Team" : getSetting("Client Team"),
+      "Asset Type" : [],
+      "Asset Sub-Type" : [],
+      "Year" : [],
+      "Campaign" : [],
+      "Product Group" : [],
+      "Product" : [],
+      "Product Size" : [],
+      "Product Subtype" : [],
+      "Product Gender" : [],
+      "Number of People" : [],
+      "Person" : [],
+      "Team Marks" : [],
+      "Gender" : [],
+      "Shot Type" : [],
+      "Sport" : [],
+      "Asset Expired" : [],
+      "Market" : [],
+      "Platform Rights" : [],
+      "Job ID" : [],
+      MassUpload: true
+    };
+
+    sortKeywords(obj, newObj)
+    groupSearch(newObj)
+    delete newObj.MassUpload
+
+    // Year fallback
+    if (newObj.Created !== undefined && newObj.year.length == 0) {
+      newObj.year.push(newObj.Created.substring(0,4))
+    }
+
+    //Push tags into TagTracker
+    for (let i = 0; i < newObj.tags.length; i++) {
+      TagTracker.push(newObj.tags[i])
+    }
+
+    // Join arrays and push output
+    joinArrays(newObj)
+    jsonOutput.push(newObj)
+
+  })
+
+  writeCsvFile(jsonOutput, outputPath)
+  // evalJSON(jsonOutput)
+  evalTags(TagTracker)
+
 }
 
 const parseMD = function(data) {
@@ -92,10 +156,13 @@ const parseMD = function(data) {
       market : [],
       platformrights : [],
       jobid : [],
+      MassUpload: false
     };
 
-    sortKeywords(obj, newObj)
-    groupSearch(newObj)
+    sortKeywords(obj, newObj, false)
+    groupSearch(newObj, false)
+    delete newObj.MassUpload
+
     // Year fallback
     if (newObj.Created !== undefined && newObj.year.length == 0) {
       newObj.year.push(newObj.Created.substring(0,4))
@@ -118,4 +185,8 @@ const parseMD = function(data) {
 
 }
 
-parseMD(jsonData)
+if (!MassUpload) {
+  parseMD(jsonData)
+} else {
+  parseMassUpload(jsonData)
+}
