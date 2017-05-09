@@ -1,21 +1,25 @@
-const CsvPath = process.argv[2].toString()
+const fs = require('fs')
+const csvjson = require('csvjson')
+const evalJSON = require('./modules/eval-json')
 
-const ConvertToJSON = function(data) {
-  let jsonConvertInput = csvjson.toObject(data, CsvToJsonOptions);
-  // evalJSON(jsonConvertInput)
-  console.log(jsonConvertInput)
-}
+const CsvPath = process.argv[2]
 
-const CsvToJsonOptions = {
+const csvjsonOptions = {
     // headers   : "key",
     delimiter   : ";"
 }
 
-if (CsvPath !== undefined) {
+const readConvert = function() {
+  fs.readFile(CsvPath, 'utf8', parseCB);
+}
 
-  let CsvInput = fs.readFile(CsvPath, (err, data) => {
-    if (err) throw err;
-    ConvertToJSON(data)
-  });
+const parseCB = function(err, data) {
+  let jsonData = csvjson.toObject(data, csvjsonOptions);
+  evalJSON(jsonData)
+}
 
+if (CsvPath == undefined) {
+  console.log('No path specified. Try again.')
+} else {
+  readConvert()
 }
