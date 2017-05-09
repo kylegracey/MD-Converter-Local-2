@@ -21,6 +21,10 @@ const inputPath = './files/gatorade-5-9v2.json'
 const outputPath = './files/gatorade.csv'
 const jsonData = require(inputPath)
 
+// Brand Settings
+const brandfile = require('./config/brandfile')
+const brandID = brandfile.VML
+
 // Output Variables
 let jsonOutput = []
 let TagTracker = []
