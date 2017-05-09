@@ -2,7 +2,6 @@ const fs = require('fs')
 const csvjson = require('csvjson')
 
 // MODULES
-// const findValues = require('./modules/find-values')
 const trimExtension = require('./modules/trim-extension')
 const getSetting = require('./modules/get-setting')
 const groupSearch = require('./modules/group-search')
@@ -14,13 +13,14 @@ const getCreateDate = require('./modules/get-create-date')
 const evalJSON = require('./modules/eval-json')
 const evalTags = require('./modules/eval-tags')
 
+// Input and Output Options
 // const inputPath = process.argv[2]
 // const outputPath = process.argv[3]
-const inputPath = './files/gatoradeinput.json'
+const inputPath = './files/gatorade-5-9v1.json'
 const outputPath = './files/gatorade.csv'
-
 const jsonData = require(inputPath)
 
+// Output Variables
 let jsonOutput = []
 let TagTracker = []
 
@@ -54,7 +54,7 @@ const parseMD = function(data) {
   data.forEach(function(obj) {
     // Get the object
     // let obj = data[i]
-    console.log(obj.FileName)
+    // console.log(obj.FileName)
     let newObj = {
       "Asset Name" : trimExtension(obj),
       "Asset Description" : getDescription(obj),
@@ -72,7 +72,7 @@ const parseMD = function(data) {
       assetsubtype : [],
       year : [],
       campaign : [],
-      productgroup : groupSearch(obj.Keywords),
+      productgroup : [],
       product : [],
       productsize : [],
       productsubtype : [],
@@ -83,13 +83,14 @@ const parseMD = function(data) {
       gender : [],
       shottype : [],
       sport : [],
-      assetstatus : "",
+      assetstatus : [],
       market : [],
       platformrights : [],
-      jobid : []
+      jobid : [],
     };
 
     sortKeywords(obj, newObj)
+    groupSearch(newObj)
     // Year fallback
     if (newObj.year.length == 0) {
       newObj.year.push(newObj.Created.substring(0,4))
