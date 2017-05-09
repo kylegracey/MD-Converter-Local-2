@@ -31,7 +31,12 @@ function getCreateDate(obj) {
   const dateHeaders = ["CreateDate", "CreatedDate", "DateCreated", "DateTimeCreated", "DateTimeOriginal"]
 
   if (obj["CreateDate"]) {
-    let formattedDate = baseFormat(obj["CreateDate"])
+    let formattedDate = ""
+    if (obj["CreateDate"].indexOf("/") !== -1) {
+      formattedDate = formatTwo(obj["CreateDate"])
+    } else {
+      formattedDate = baseFormat(obj["CreateDate"])
+    }
     return formattedDate;
   } else if (obj["DateCreated"]) {
     let formattedDate = baseFormat(obj["DateCreated"])
