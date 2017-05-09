@@ -47,40 +47,6 @@ function getCreateDate(obj) {
 
   return formattedDate
 
-  // if (obj["CreateDate"]) {
-  //   let formattedDate = ""
-  //   if (obj["CreateDate"].indexOf("/") !== -1) {
-  //     formattedDate = formatTwo(obj["CreateDate"])
-  //   } else {
-  //     formattedDate = baseFormat(obj["CreateDate"])
-  //   }
-  //   return formattedDate;
-  // } else if (obj["DateCreated"]) {
-  //   let formattedDate = baseFormat(obj["DateCreated"])
-  //   return formattedDate;
-  // } else if (obj["DateTimeCreated"]) {
-  //   let formattedDate = baseFormat(obj["DateTimeCreated"])
-  //   return formattedDate;
-  // } else if (obj["DateTimeOriginal"]) {
-  //   let formattedDate = baseFormat(obj["DateTimeOriginal"])
-  //   return formattedDate;
-  // } else if (obj["CreatedDate"]) {
-  //   let formattedDate = formatTwo(obj["CreatedDate"])
-  //   return formattedDate;
-  // } else {
-  //   // This date evaluated in evalJSON
-  //   return "2012-01-01"
-  // }
-
 }
 
-// // Test Log
-// console.log(getCreateDate({
-//     CreatedDateTime: "2012:04:02",
-//     CreationDate: "2014:11:13 16:45:13-05:00",
-//     // CreateDate: "2016:09:29 16:45:13-05:00",
-//     // CreatedDate: "4/1/15",
-//     DateCreated: "1989:07:13 16:45:13-05:00"
-//   })
-// )
 module.exports = getCreateDate
