@@ -30,8 +30,10 @@ const sortHSLogic = function(hsArr, newObj) {
   // Expired or just a tag
     if (hsArr[0] == "Expired") {
       // Asset is Expired
-      if (newObj.assetstatus.indexOf("Expired") == -1) {
+      if (!newObj.MassUpload && newObj.assetstatus.indexOf("Expired") == -1) {
         newObj.assetstatus.push("Expired")
+      } else if (newObj.MassUpload && newObj["Asset Expired"].indexOf("Expired") == -1) {
+        newObj["Asset Expired"].push("Expired")
       }
 
     } else {
@@ -42,7 +44,10 @@ const sortHSLogic = function(hsArr, newObj) {
     // Two+ tier
 
     // Start
-    let category = hsArr[0].toLowerCase().replace(/\s/g, '');
+    let category = hsArr[0]
+    if(!newObj.MassUpload) {
+      category = hsArr[0].toLowerCase().replace(/\s/g, '');
+    }
 
     if (newObj.hasOwnProperty(category)) {
       // If category matches one in object, push the second string from array into appropriate category.
