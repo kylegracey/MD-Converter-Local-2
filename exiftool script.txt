@@ -1,0 +1,12 @@
+JSON Export
+exiftool -j -SourceFile -FileName -HierarchicalSubject -Keywords -Subject -CreateDate -CreatedDate -DateCreated -DateTimeCreated -DateTimeOriginal -FileAccessDate -r 
+
+Desktop/_To\ Bynder/ > Sites/MD-Converter-Local-2/files/targetexport.json
+
+
+NOT USEFUL:
+-CreatedDateTime
+  Not correct time, and all files in test also have proper CreateDate
+
+-CreationDate
+  Correct time, but all files in test also have proper CreateDate
