@@ -1,4 +1,13 @@
-const CsvPath = process.argv[2].toString()
+const fs = require('fs')
+const csvjson = require('csvjson')
+
+const CsvPath = './files/gatorade.csv'
+const CsvData = require(CsvPath)
+
+const CsvToJsonOptions = {
+    // headers   : "key",
+    delimiter   : ";"
+}
 
 const ConvertToJSON = function(data) {
   let jsonConvertInput = csvjson.toObject(data, CsvToJsonOptions);
@@ -6,16 +15,4 @@ const ConvertToJSON = function(data) {
   console.log(jsonConvertInput)
 }
 
-const CsvToJsonOptions = {
-    // headers   : "key",
-    delimiter   : ";"
-}
-
-if (CsvPath !== undefined) {
-
-  let CsvInput = fs.readFile(CsvPath, (err, data) => {
-    if (err) throw err;
-    ConvertToJSON(data)
-  });
-
-}
+ConvertToJSON(CsvData)
