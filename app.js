@@ -17,8 +17,8 @@ const evalTags = require('./modules/eval-tags')
 // Input and Output Options
 // const inputPath = process.argv[2]
 // const outputPath = process.argv[3]
-const inputPath = './files/massupload1.json'
-const outputPath = './files/mu-output1.csv'
+const inputPath = './files/testupload2.json'
+const outputPath = './files/testupload2out.csv'
 const jsonData = require(inputPath)
 
 // Brand Settings
@@ -111,7 +111,6 @@ const parseMassUpload = function(data) {
     jsonOutput.push(newObj)
 
   })
-
   writeCsvFile(jsonOutput, outputPath)
   evalJSON(jsonOutput, MassUpload)
   evalTags(TagTracker)
