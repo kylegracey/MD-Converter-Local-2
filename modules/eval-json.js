@@ -1,7 +1,7 @@
 const fs = require('fs')
 const csvjson = require('csvjson')
 
-const CheckSpecialCharacters = false
+const CheckSpecialCharacters = true
 
 let CritErrorCount = 0
 let SpecialCharCount = 0
@@ -80,19 +80,10 @@ const evalJSON = function(jsonInput) {
 
     // ======== Check for Special Characters =======
       if (CheckSpecialCharacters){
-        const SpecialCharacters = /[!@#$%^&*()+=\[\]{};':"\\|<>\/?]+/;
-      const SCTags = /[!@#$%^&*()+=\[\]{};':"\\|<>\/?]+/;
+      const SpecialCharacters = /[!@#$%^&*()+=\[\]{};:"\\|<>\/?]+/;
       for (value in obj) {
-        if (value !== "Path to Assets" && value !== "Tags" && value !== "assetsubtype") {
+        if (value !== "Path to Assets") {
           if (SpecialCharacters.test(obj[value])) {
-            critErrObject["Special Characters"].push(value)
-            CritErrorCount++
-            SpecialCharCount++
-            CritErrObjectExists = true
-          }
-        }
-        else if (value == "Tags") {
-          if (SCTags.test(obj[value])) {
             critErrObject["Special Characters"].push(value)
             CritErrorCount++
             SpecialCharCount++
@@ -131,7 +122,7 @@ const evalJSON = function(jsonInput) {
           critErrObject.Created.push("Created set to: " + obj.Created)
         }
       }
-    } else {
+    } else if (obj.Created) {
       CritErrorCount++
       CreatedFormatErrCount++
       CritErrObjectExists = true
@@ -177,6 +168,7 @@ const evalJSON = function(jsonInput) {
     console.log(`
       ========== WARNING: CRITICAL ERRORS FOUND ==========
       ${critErrObjects.length} files with ${CritErrorCount} total critical errors found
+          ${SpecialCharCount} special characters found.
           ${MissingMandatory} mandatory field(s) missing.
           ${CreatedFormatErrCount} files with incorrectly formatted Created field.
           ${YearErrCount} files with incorrectly formatted year.
