@@ -34,7 +34,16 @@ const wordSearch = function(objKeywordArr, newObj) {
         if (KeywordCats[Cat].indexOf(objKeywordArr[i]) !== -1) {
           foundKeyword = true
           // Found a match in this category's array
-          let category = Cat.toLowerCase().replace(/\s/g, '');
+          let category = Cat
+          if (!newObj.MassUpload){
+            category = category.toLowerCase().replace(/\s/g, '');
+          }
+
+          if (category == "Asset Subtype") {
+            category = "Asset Sub-Type"
+          } else if (category == "Marks") {
+            category = "Team Marks"
+          }
 
           // Check if tag exists in category already. If not, push into newObj[category]
           // console.log(`Found a match! Pushing ${objKeywordArr[i]} into ${category}`)
@@ -47,8 +56,10 @@ const wordSearch = function(objKeywordArr, newObj) {
 
       // If tag isn't found in any of the keyword categories, add to tags
       if (!foundKeyword) {
-        if (newObj.Tags.indexOf(objKeywordArr[i]) == -1) {
+        if (!newObj.MassUpload && newObj.Tags.indexOf(objKeywordArr[i]) == -1) {
           newObj.Tags.push(objKeywordArr[i])
+        } else if (newObj.MassUpload && newObj.tags.indexOf(objKeywordArr[i]) == -1) {
+          newObj.tags.push(objKeywordArr[i])
         }
       }
     }
