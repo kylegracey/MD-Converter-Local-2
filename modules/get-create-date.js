@@ -29,36 +29,24 @@ function formatTwo(date) {
 
 function getCreateDate(obj) {
   const dateHeaders = ["CreateDate", "CreatedDate", "DateCreated", "DateTimeCreated", "DateTimeOriginal"]
-
-  if (obj["CreateDate"]) {
-    let formattedDate = baseFormat(obj["CreateDate"])
-    return formattedDate;
-  } else if (obj["DateCreated"]) {
-    let formattedDate = baseFormat(obj["DateCreated"])
-    return formattedDate;
-  } else if (obj["DateTimeCreated"]) {
-    let formattedDate = baseFormat(obj["DateTimeCreated"])
-    return formattedDate;
-  } else if (obj["DateTimeOriginal"]) {
-    let formattedDate = baseFormat(obj["DateTimeOriginal"])
-    return formattedDate;
-  } else if (obj["CreatedDate"]) {
-    let formattedDate = formatTwo(obj["CreatedDate"])
-    return formattedDate;
-  } else {
-    // This date evaluated in evalJSON
-    return "2012-01-01"
+  let formattedDate = ""
+  for (let i = 0; i < dateHeaders.length; i++) {
+    let header = dateHeaders[i]
+    if (formattedDate == "") {
+      if (obj[header] !== undefined) {
+        if (obj[header].indexOf("/") !== -1) {
+          formattedDate = formatTwo(obj["CreateDate"])
+        } else if (obj[header].indexOf(":" == 4)) {
+          formattedDate = baseFormat(obj["CreateDate"])
+        } else {
+          console.log(obj.SourceFile + "Does not have a recognizable date")
+        }
+      }
+    }
   }
+
+  return formattedDate
 
 }
 
-// // Test Log
-// console.log(getCreateDate({
-//     CreatedDateTime: "2012:04:02",
-//     CreationDate: "2014:11:13 16:45:13-05:00",
-//     // CreateDate: "2016:09:29 16:45:13-05:00",
-//     // CreatedDate: "4/1/15",
-//     DateCreated: "1989:07:13 16:45:13-05:00"
-//   })
-// )
 module.exports = getCreateDate
