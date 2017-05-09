@@ -18,4 +18,8 @@ const parseCB = function(err, data) {
   evalJSON(jsonData)
 }
 
-readConvert()
+if (CsvPath == undefined) {
+  console.log('No path specified. Try again.')
+} else {
+  readConvert()
+}

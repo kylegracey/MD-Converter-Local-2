@@ -4,6 +4,7 @@ const csvjson = require('csvjson')
 let CritErrorCount = 0
 let MinorErrorCount = 0
 let MissingMandatory = 0
+let YearErrCount = 0
 let NoDateCount = 0
 let ModDateCount = 0
 let NoTagsCount = 0
@@ -59,13 +60,14 @@ const evalJSON = function(jsonInput) {
     let critErrObject = {
       "Asset Name": obj["Asset Name"],
       "Mandatory Fields Missing": [],
+      "year": [],
       "Path to Assets": obj["Path to Assets"]
     }
 
     let errObject = {
       "Asset Name": obj["Asset Name"],
       "Date": [],
-      "Tags": []
+      "Tags": [],
     }
 
     // Check Mandatory Fields
@@ -77,6 +79,14 @@ const evalJSON = function(jsonInput) {
         CritErrObjectExists = true
       }
     })
+
+    // Check Date Formats
+    if (obj.year.match(/^[0-9]+$/) == null) {
+      CritErrorCount++
+      YearErrCount++
+      CritErrObjectExists = true
+      critErrObject.year.push("Year set to: " + obj.year)
+    }
 
     // Non-Mandatory Field Checks
 
@@ -117,6 +127,7 @@ const evalJSON = function(jsonInput) {
       ${critErrObjects.length} files with ${CritErrorCount} total critical errors found
           ${MissingMandatory} mandatory field(s) missing.
           ${NoDateCount} files missing a date.
+          ${YearErrCount} files with incorrectly formatted year.
 
       These can cause major problems.
       Fix files and Re-run script before uploading to Bynder
