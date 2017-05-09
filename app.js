@@ -16,7 +16,7 @@ const evalTags = require('./modules/eval-tags')
 // Input and Output Options
 // const inputPath = process.argv[2]
 // const outputPath = process.argv[3]
-const inputPath = './files/gatorade-5-9v1.json'
+const inputPath = './files/gatorade-5-9v2.json'
 const outputPath = './files/gatorade.csv'
 const jsonData = require(inputPath)
 

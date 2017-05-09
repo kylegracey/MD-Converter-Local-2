@@ -2,6 +2,7 @@ const fs = require('fs')
 const csvjson = require('csvjson')
 
 const CheckSpecialCharacters = true
+const CheckSpecialCharactersLoose = true
 
 let CritErrorCount = 0
 let SpecialCharCount = 0
@@ -82,7 +83,14 @@ const evalJSON = function(jsonInput) {
       if (CheckSpecialCharacters){
       const SpecialCharacters = /[!@#$%^&*()+=\[\]{};:"\\|<>\/?]+/;
       for (value in obj) {
-        if (value !== "Path to Assets") {
+        if (!CheckSpecialCharactersLoose && value !== "Path to Assets") {
+          if (SpecialCharacters.test(obj[value])) {
+            critErrObject["Special Characters"].push(value)
+            CritErrorCount++
+            SpecialCharCount++
+            CritErrObjectExists = true
+          }
+        } else if (CheckSpecialCharactersLoose && value !== "Path to Assets" && value !== "numberofpeople" && value !== "Tags") {
           if (SpecialCharacters.test(obj[value])) {
             critErrObject["Special Characters"].push(value)
             CritErrorCount++
