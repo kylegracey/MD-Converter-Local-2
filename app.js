@@ -92,7 +92,7 @@ const parseMD = function(data) {
     sortKeywords(obj, newObj)
     groupSearch(newObj)
     // Year fallback
-    if (newObj.year.length == 0) {
+    if (newObj.year.length == 0 && newObj.Created !== undefined) {
       newObj.year.push(newObj.Created.substring(0,4))
     }
 
