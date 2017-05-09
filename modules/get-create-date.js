@@ -44,6 +44,7 @@ function getCreateDate(obj) {
       }
     }
   }
+
   return formattedDate
 
   // if (obj["CreateDate"]) {
