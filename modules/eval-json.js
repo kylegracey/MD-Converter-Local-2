@@ -1,33 +1,13 @@
 const fs = require('fs')
 const csvjson = require('csvjson')
+const evalsettings = require('../config/eval-settings.json')
 
 // Settings
 const CheckSpecialCharacters = true
 const SpecialCharacters = /[,!@#$%^&*=\[\]{};"\\|<>\/?]+/;
 
-const mandatoryFields = [
-  "Asset Name",
-  "BrandSubbrand",
-  "Path to Assets",
-  "Archived",
-  "assettype"
-]
-
-const tagCats = [
-  "Tags",
-  "campaign",
-  "productgroup",
-  "product",
-  "productsize",
-  "productsubtype",
-  "productgender",
-  "numberofpeople",
-  "person",
-  "teammarks",
-  "gender",
-  "shottype",
-  "sport"
-]
+const mandatoryFields = evalsettings["Mandatory Fields"]
+const tagCategories = evalsettings["Tag Categories"]
 
 // Error Object Structure
 function ErrObject(obj) {
@@ -68,9 +48,10 @@ const writeLog = function(logData, fname) {
 }
 
 // Check if category is mandatory. If so, it's empty and needs to be flagged.
-function checkMandatory(category, errObject) {
+function checkMandatoryCategories(category, errObject) {
   if (mandatoryFields.indexOf(category) !== -1) {
     errObject.exists = true
+    MissingMandatory++
     errObject["Mandatory Fields Missing"].push(category)
   }
 }
@@ -107,7 +88,7 @@ const evalJSON = function(jsonInput) {
         }
 
       } else {
-        checkMandatory(category, CritErrObject)
+        checkMandatoryCategories(category, CritErrObject)
       }
     }
 
@@ -123,8 +104,20 @@ const evalJSON = function(jsonInput) {
 
   })
 
-  writeLog(CritErrObjects, "_CriticalErrorLog")
-  writeLog(MinorErrObjects, "_MinorErrorLog")
+  if (CritErrObjects.length > 0) {
+    writeLog(CritErrObjects, "_CriticalErrorLog")
+    console.warn(`========== WARNING: ${CritErrObjects.length} FILES WITH CRITICAL ERRORS FOUND ==========`)
+    if (MissingMandatory > 0) {console.log(`${MissingMandatory} Mandatory Categories Missing`)}
+    if (SpecialCharCount > 0) {console.log(`${SpecialCharCount} Special Character Errors`)}
+  } else {
+    writeLog({Errors:"No Critical Errors Found!"}, "_CriticalErrorLog")
+  }
+
+  if (MinorErrObjects.length > 0) {
+    writeLog(MinorErrObjects, "_MinorErrorLog")
+  } else {
+    writeLog({Errors:"No Minor Errors Found!"}, "_MinorErrorLog")
+  }
 
 }
 
