@@ -3,7 +3,7 @@ const csvjson = require('csvjson')
 const evalsettings = require('../config/eval-settings.json')
 
 // Modules
-const checkDependencies = require('./eval-dependencies')
+const checkTags = require('./eval-dependencies')
 
 // Settings
 const CheckSpecialCharacters = true
@@ -18,6 +18,7 @@ function ErrObject(obj) {
   this["Asset Name"] = obj["Asset Name"]
   this["Special Character Errors"] = []
   this["Mandatory Fields Missing"]= []
+  this["Dependencies"]= []
   this["Created"]= []
   this["year"]= []
   this["Hidden Files"]= []
@@ -28,6 +29,7 @@ function ErrObject(obj) {
 // let CritErrorCount = 0
 let SpecialCharCount = 0
 let MissingMandatory = 0
+let DependencyCount = 0
 let CreatedFormatErrCount = 0
 let YearErrCount = 0
 let HiddenFileCount = 0
@@ -103,7 +105,7 @@ const evalJSON = function(jsonInput) {
         // Check all categories except Path to Assets
         if (category !== "Path to Assets") {
           charCheck(category, values, CritErrObject)
-          checkDependencies(obj, category, values, CritErrObject)
+          checkTags(obj, category, values, CritErrObject, DependencyCount, MinorErrObject)
         }
 
       } else {
