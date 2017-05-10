@@ -2,6 +2,9 @@ const fs = require('fs')
 const csvjson = require('csvjson')
 const evalsettings = require('../config/eval-settings.json')
 
+// Modules
+const checkDependencies = require('./eval-dependencies')
+
 // Settings
 const CheckSpecialCharacters = true
 const SpecialCharacters = /[,!@#$%^&*=\[\]{};"\\|<>\/?]+/;
@@ -100,6 +103,7 @@ const evalJSON = function(jsonInput) {
         // Check all categories except Path to Assets
         if (category !== "Path to Assets") {
           charCheck(category, values, CritErrObject)
+          checkDependencies(obj, category, values, CritErrObject)
         }
 
       } else {

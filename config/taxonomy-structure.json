@@ -1,196 +1,238 @@
-{
-  "Group": [
-    "PepsiCo",
-    "Tyson",
-    "New York",
-    "Kalamazoo",
-    "VML Agency"
-  ],
-  "Client Team": [
-    {
-      "Team": "VML Assets",
-      "Dependencies": {
-        "Group": [
-          "VML Agency"
-        ]
+[
+  {
+    "Metaproperty": "group",
+    "Label": "Group",
+    "Options": [
+      {
+        "Label": "PepsiCo"
+      },
+      {
+        "Label": "Tyson"
+      },
+      {
+        "Label": "New York"
+      },
+      {
+        "Label": "Kalamazoo"
+      },
+      {
+        "Label": "VML Agency"
       }
-    },
-    {
-      "Team": "Gatorade",
-      "Dependencies": {
-        "Group": [
-          "PepsiCo"
-        ]
+    ]
+  },
+  {
+    "Metaproperty": "clientteam",
+    "Label": "Client Team",
+    "Options": [
+      {
+        "Label": "VML Assets",
+        "Dependencies": {
+          "group": [
+            "VML Agency"
+          ]
+        }
+      },
+      {
+        "Label": "Gatorade",
+        "Dependencies": {
+          "group": [
+            "PepsiCo"
+          ]
+        }
+      },
+      {
+        "Label": "Propel",
+        "Dependencies": {
+          "group": [
+            "PepsiCo"
+          ]
+        }
+      },
+      {
+        "Label": "Tyson Consumer",
+        "Dependencies": {
+          "group": [
+            "Tyson"
+          ]
+        }
+      },
+      {
+        "Label": "Jimmy Dean",
+        "Dependencies": {
+          "group": [
+            "Tyson"
+          ]
+        }
+      },
+      {
+        "Label": "Hillshire",
+        "Dependencies": {
+          "group": [
+            "Tyson"
+          ]
+        }
+      },
+      {
+        "Label": "New Balance",
+        "Dependencies": {
+          "group": [
+            "New York"
+          ]
+        }
+      },
+      {
+        "Label": "Stryker",
+        "Dependencies": {
+          "group": [
+            "Kalamazoo"
+          ]
+        }
       }
-    },
-    {
-      "Team": "Propel",
-      "Dependencies": {
-        "Group": [
-          "PepsiCo"
-        ]
+    ]
+  },
+  {
+    "Metaproperty": "assettype",
+    "Label": "Asset Type",
+    "Options": [
+      {
+        "Label": "Photography"
+      },
+      {
+        "Label": "Video"
+      },
+      {
+        "Label": "Graphics"
+      },
+      {
+        "Label": "Fonts"
+      },
+      {
+        "Label": "Presentations"
+      },
+      {
+        "Label": "Documents"
+      },
+      {
+        "Label": "Production Files"
+      },
+      {
+        "Label": "Product Renders"
       }
-    },
-    {
-      "Team": "Tyson Consumer",
-      "Dependencies": {
-        "Group": [
-          "Tyson"
-        ]
+    ]
+  },
+  {
+    "Metaproperty": "assetsubtype",
+    "Label": "Asset Sub-Type",
+    "Options": [
+      {
+        "Label": "Original",
+        "Dependencies": {
+          "assettype": [
+            "Photography",
+            "Video"
+          ]
+        }
+      },
+      {
+        "Label": "Stock",
+        "Dependencies": {
+          "assettype": [
+            "Photography",
+            "Video"
+          ]
+        }
+      },
+      {
+        "Label": "Partner",
+        "Dependencies": {
+          "assettype": [
+            "Photography"
+          ]
+        }
+      },
+      {
+        "Label": "Logos",
+        "Dependencies": {
+          "assettype": [
+            "Graphics"
+          ]
+        }
+      },
+      {
+        "Label": "Layouts",
+        "Dependencies": {
+          "assettype": [
+            "Graphics"
+          ]
+        }
+      },
+      {
+        "Label": "Icons",
+        "Dependencies": {
+          "assettype": [
+            "Graphics"
+          ]
+        }
+      },
+      {
+        "Label": "Backgrounds and Textures",
+        "Dependencies": {
+          "assettype": [
+            "Photography",
+            "Graphics"
+          ]
+        }
+      },
+      {
+        "Label": "Animations",
+        "Dependencies": {
+          "assettype": [
+            "Video",
+            "Graphics",
+            "Product Renders"
+          ]
+        }
+      },
+      {
+        "Label": "Releases",
+        "Dependencies": {
+          "assettype": [
+            "Documents"
+          ]
+        }
+      },
+      {
+        "Label": "Print Ad",
+        "Dependencies": {
+          "assettype": [
+            "Production Files"
+          ]
+        }
+      },
+      {
+        "Label": "OLM",
+        "Dependencies": {
+          "assettype": [
+            "Production Files"
+          ]
+        }
+      },
+      {
+        "Label": "Email",
+        "Dependencies": {
+          "assettype": [
+            "Production Files"
+          ]
+        }
+      },
+      {
+        "Label": "Facebook",
+        "Dependencies": {
+          "assettype": [
+            "Production Files"
+          ]
+        }
       }
-    },
-    {
-      "Team": "Jimmy Dean",
-      "Dependencies": {
-        "Group": [
-          "Tyson"
-        ]
-      }
-    },
-    {
-      "Team": "Hillshire",
-      "Dependencies": {
-        "Group": [
-          "Tyson"
-        ]
-      }
-    },
-    {
-      "Team": "New Balance",
-      "Dependencies": {
-        "Group": [
-          "New York"
-        ]
-      }
-    },
-    {
-      "Team": "Stryker",
-      "Dependencies": {
-        "Group": [
-          "Kalamazoo"
-        ]
-      }
-    }
-  ],
-  "Asset Type": [
-    "Photography",
-    "Video",
-    "Graphics",
-    "Fonts",
-    "Presentations",
-    "Documents",
-    "Production Files",
-    "Product Renders"
-  ],
-  "Asset Subtype": [
-    {
-      "Sub-Type": "Original",
-      "Dependencies": {
-        "Asset Type": [
-          "Photography",
-          "Video"
-        ]
-      }
-    },
-    {
-      "Sub-Type": "Stock",
-      "Dependencies": {
-        "Asset Type": [
-          "Photography",
-          "Video"
-        ]
-      }
-    },
-    {
-      "Sub-Type": "Partner",
-      "Dependencies": {
-        "Asset Type": [
-          "Photography"
-        ]
-      }
-    },
-    {
-      "Sub-Type": "Logos",
-      "Dependencies": {
-        "Asset Type": [
-          "Graphics"
-        ]
-      }
-    },
-    {
-      "Sub-Type": "Layouts",
-      "Dependencies": {
-        "Asset Type": [
-          "Graphics"
-        ]
-      }
-    },
-    {
-      "Sub-Type": "Icons",
-      "Dependencies": {
-        "Asset Type": [
-          "Graphics"
-        ]
-      }
-    },
-    {
-      "Sub-Type": "Backgrounds and Textures",
-      "Dependencies": {
-        "Asset Type": [
-          "Photography",
-          "Graphics"
-        ]
-      }
-    },
-    {
-      "Sub-Type": "Animations",
-      "Dependencies": {
-        "Asset Type": [
-          "Video",
-          "Graphics",
-          "Product Renders"
-        ]
-      }
-    },
-    {
-      "Sub-Type": "Releases",
-      "Dependencies": {
-        "Asset Type": [
-          "Documents"
-        ]
-      }
-    },
-    {
-      "Sub-Type": "Print Ad",
-      "Dependencies": {
-        "Asset Type": [
-          "Production Files"
-        ]
-      }
-    },
-    {
-      "Sub-Type": "OLM",
-      "Dependencies": {
-        "Asset Type": [
-          "Production Files"
-        ]
-      }
-    },
-    {
-      "Sub-Type": "Email",
-      "Dependencies": {
-        "Asset Type": [
-          "Production Files"
-        ]
-      }
-    },
-    {
-      "Sub-Type": "Facebook",
-      "Dependencies": {
-        "Asset Type": [
-          "Production Files"
-        ]
-      }
-    }
-  ]
-}
+    ]
+  }
+]
