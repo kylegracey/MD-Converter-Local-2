@@ -17,6 +17,7 @@ const checkTags = function (obj, category, values, CritErrObject, DependencyCoun
 
     for (var MpOption of MpOptions) {
       if (value == MpOption.Label) {
+        console.log(`found match between ${value} and ${MpOption.Label}`)
         ValidTag = true
 
         if (MpOption.Dependencies !== undefined) {
@@ -41,6 +42,13 @@ const checkTags = function (obj, category, values, CritErrObject, DependencyCoun
 
       }
     }
+
+    if (!ValidTag) {
+      CritErrObject.exists = true
+      // DependencyCount++
+      CritErrObject["Invalid Options"].push(`${category}: '${value}'`)
+    }
+
   }
 
 }

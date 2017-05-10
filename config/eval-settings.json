@@ -6,8 +6,11 @@
     "Archived",
     "assettype"
   ],
-  "Tag Categories": [
-    "Tags",
+  "Tag Check Categories": [
+    "group",
+    "clientteam",
+    "assettype",
+    "assetsubtype",
     "campaign",
     "productgroup",
     "product",

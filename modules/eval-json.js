@@ -10,7 +10,7 @@ const CheckSpecialCharacters = true
 const SpecialCharacters = /[,!@#$%^&*=\[\]{};"\\|<>\/?]+/;
 
 const mandatoryFields = evalsettings["Mandatory Fields"]
-const tagCategories = evalsettings["Tag Categories"]
+const TagCheckCats = evalsettings["Tag Check Categories"]
 
 // Error Object Structure
 function ErrObject(obj) {
@@ -19,6 +19,7 @@ function ErrObject(obj) {
   this["Special Character Errors"] = []
   this["Mandatory Fields Missing"]= []
   this["Dependencies"]= []
+  this["Invalid Options"] = []
   this["Created"]= []
   this["year"]= []
   this["Hidden Files"]= []
@@ -102,10 +103,14 @@ const evalJSON = function(jsonInput) {
           hiddenFileCheck(values[0], CritErrObject)
         }
 
+        // Tag Categories
+        if (TagCheckCats.indexOf(category) !== -1) {
+          checkTags(obj, category, values, CritErrObject, DependencyCount)
+        }
+
         // Check all categories except Path to Assets
         if (category !== "Path to Assets") {
           charCheck(category, values, CritErrObject)
-          checkTags(obj, category, values, CritErrObject, DependencyCount, MinorErrObject)
         }
 
       } else {
