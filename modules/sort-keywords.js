@@ -2,19 +2,6 @@ const getSetting = require('./get-setting')
 const wordSearch = require('./word-search')
 
 const altKeywords = getSetting("Keyword Remaps")
-// {
-//   // Group Word Remapping
-//   "Person" : ["Athlete"],
-//   "Team Marks" : ["Marks"],
-//   // Keyword Remapping
-//   "Blender Bottle" : ["Shaker Bottle", "Rec Bottle"],
-//   "Backgrounds & Textures" : ["Backgrounds", "Details"],
-//   "Expired" : ["Asset Expired"],
-//   "Energy Chews" : ["Prime Chews"],
-//   "Gx Bottle" : ["Gx"],
-//   "Product Close Up" : ["Product Hero"],
-//   "Whey Protein Bar" : ["Recover Bar"]
-// }
 
 const remapCheck = function(Keywords) {
   //Takes an array of keywords, loops through and remaps any of them.
@@ -32,7 +19,6 @@ const remapCheck = function(Keywords) {
       }
     }
   }
-
   return keywords
 
 }
@@ -44,8 +30,10 @@ const sortHSLogic = function(hsArr, newObj) {
   // Expired or just a tag
     if (hsArr[0] == "Expired") {
       // Asset is Expired
-      if (newObj.assetstatus.indexOf("Expired") == -1) {
+      if (!newObj.MassUpload && newObj.assetstatus.indexOf("Expired") == -1) {
         newObj.assetstatus.push("Expired")
+      } else if (newObj.MassUpload && newObj["Asset Expired"].indexOf("Expired") == -1) {
+        newObj["Asset Expired"].push("Expired")
       }
 
     } else {
@@ -56,7 +44,10 @@ const sortHSLogic = function(hsArr, newObj) {
     // Two+ tier
 
     // Start
-    let category = hsArr[0].toLowerCase().replace(/\s/g, '');
+    let category = hsArr[0]
+    if(!newObj.MassUpload) {
+      category = hsArr[0].toLowerCase().replace(/\s/g, '');
+    }
 
     if (newObj.hasOwnProperty(category)) {
       // If category matches one in object, push the second string from array into appropriate category.

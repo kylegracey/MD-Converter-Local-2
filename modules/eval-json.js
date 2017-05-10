@@ -86,7 +86,6 @@ function charCheck(value, errObject) {
   }
 }
 
-
 const evalJSON = function(jsonInput) {
   let CritErrObjects = []
   let MinorErrObjects = []
