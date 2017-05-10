@@ -70,6 +70,15 @@ function charCheck(category, values, errObject) {
   }
 }
 
+// Check for Hidden Files Included
+function hiddenFileCheck(value, errObject) {
+  if (value.indexOf(".") == 0) {
+    errObject.exists = true
+    errObject["Hidden Files"].push("Hidden File Found!")
+    HiddenFileCount++
+  }
+}
+
 const evalJSON = function(jsonInput) {
   let CritErrObjects = []
   let MinorErrObjects = []
@@ -81,13 +90,20 @@ const evalJSON = function(jsonInput) {
 
     for (category in obj) {
       if (obj[category] !== "") {
+        // If there is at least 1 value under this category
         const values = obj[category].split(",")
 
+        if (category == "Asset Name") {
+          hiddenFileCheck(values[0], CritErrObject)
+        }
+
+        // Check all categories except Path to Assets
         if (category !== "Path to Assets") {
           charCheck(category, values, CritErrObject)
         }
 
       } else {
+        // If no values under that category
         checkMandatoryCategories(category, CritErrObject)
       }
     }
@@ -108,7 +124,8 @@ const evalJSON = function(jsonInput) {
     writeLog(CritErrObjects, "_CriticalErrorLog")
     console.warn(`========== WARNING: ${CritErrObjects.length} FILES WITH CRITICAL ERRORS FOUND ==========`)
     if (MissingMandatory > 0) {console.log(`${MissingMandatory} Mandatory Categories Missing`)}
-    if (SpecialCharCount > 0) {console.log(`${SpecialCharCount} Special Character Errors`)}
+    if (SpecialCharCount > 0) {console.log(`${SpecialCharCount} Special Character Error(s)`)}
+    if (HiddenFileCount > 0) {console.log(`${HiddenFileCount} Hidden File(s) Found`)}
   } else {
     writeLog({Errors:"No Critical Errors Found!"}, "_CriticalErrorLog")
   }

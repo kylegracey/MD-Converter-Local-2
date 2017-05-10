@@ -1,0 +1,196 @@
+{
+  "Group": [
+    "PepsiCo",
+    "Tyson",
+    "New York",
+    "Kalamazoo",
+    "VML Agency"
+  ],
+  "Client Team": [
+    {
+      "Team": "VML Assets",
+      "Dependencies": {
+        "Group": [
+          "VML Agency"
+        ]
+      }
+    },
+    {
+      "Team": "Gatorade",
+      "Dependencies": {
+        "Group": [
+          "PepsiCo"
+        ]
+      }
+    },
+    {
+      "Team": "Propel",
+      "Dependencies": {
+        "Group": [
+          "PepsiCo"
+        ]
+      }
+    },
+    {
+      "Team": "Tyson Consumer",
+      "Dependencies": {
+        "Group": [
+          "Tyson"
+        ]
+      }
+    },
+    {
+      "Team": "Jimmy Dean",
+      "Dependencies": {
+        "Group": [
+          "Tyson"
+        ]
+      }
+    },
+    {
+      "Team": "Hillshire",
+      "Dependencies": {
+        "Group": [
+          "Tyson"
+        ]
+      }
+    },
+    {
+      "Team": "New Balance",
+      "Dependencies": {
+        "Group": [
+          "New York"
+        ]
+      }
+    },
+    {
+      "Team": "Stryker",
+      "Dependencies": {
+        "Group": [
+          "Kalamazoo"
+        ]
+      }
+    }
+  ],
+  "Asset Type": [
+    "Photography",
+    "Video",
+    "Graphics",
+    "Fonts",
+    "Presentations",
+    "Documents",
+    "Production Files",
+    "Product Renders"
+  ],
+  "Asset Subtype": [
+    {
+      "Sub-Type": "Original",
+      "Dependencies": {
+        "Asset Type": [
+          "Photography",
+          "Video"
+        ]
+      }
+    },
+    {
+      "Sub-Type": "Stock",
+      "Dependencies": {
+        "Asset Type": [
+          "Photography",
+          "Video"
+        ]
+      }
+    },
+    {
+      "Sub-Type": "Partner",
+      "Dependencies": {
+        "Asset Type": [
+          "Photography"
+        ]
+      }
+    },
+    {
+      "Sub-Type": "Logos",
+      "Dependencies": {
+        "Asset Type": [
+          "Graphics"
+        ]
+      }
+    },
+    {
+      "Sub-Type": "Layouts",
+      "Dependencies": {
+        "Asset Type": [
+          "Graphics"
+        ]
+      }
+    },
+    {
+      "Sub-Type": "Icons",
+      "Dependencies": {
+        "Asset Type": [
+          "Graphics"
+        ]
+      }
+    },
+    {
+      "Sub-Type": "Backgrounds and Textures",
+      "Dependencies": {
+        "Asset Type": [
+          "Photography",
+          "Graphics"
+        ]
+      }
+    },
+    {
+      "Sub-Type": "Animations",
+      "Dependencies": {
+        "Asset Type": [
+          "Video",
+          "Graphics",
+          "Product Renders"
+        ]
+      }
+    },
+    {
+      "Sub-Type": "Releases",
+      "Dependencies": {
+        "Asset Type": [
+          "Documents"
+        ]
+      }
+    },
+    {
+      "Sub-Type": "Print Ad",
+      "Dependencies": {
+        "Asset Type": [
+          "Production Files"
+        ]
+      }
+    },
+    {
+      "Sub-Type": "OLM",
+      "Dependencies": {
+        "Asset Type": [
+          "Production Files"
+        ]
+      }
+    },
+    {
+      "Sub-Type": "Email",
+      "Dependencies": {
+        "Asset Type": [
+          "Production Files"
+        ]
+      }
+    },
+    {
+      "Sub-Type": "Facebook",
+      "Dependencies": {
+        "Asset Type": [
+          "Production Files"
+        ]
+      }
+    }
+  ]
+}
