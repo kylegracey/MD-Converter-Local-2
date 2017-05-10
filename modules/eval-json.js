@@ -76,13 +76,16 @@ function checkMandatory(category, errObject) {
 }
 
 // Check for Special Characters
-function charCheck(value, errObject) {
-  if (SpecialCharacters.test(objProperty)) {
-    if (errType["Special Characters"].indexOf(value) == -1) {
-      errType["Special Characters"].push(value)
+function charCheck(category, values, errObject) {
+  for (var value of values) {
+    if (SpecialCharacters.test(value)) {
+      let errString = `${value} in ${category}`
+      errObject.exists = true
+      if (errObject["Special Character Errors"].indexOf(errString) == -1) {
+        errObject["Special Character Errors"].push(errString)
+      }
+      SpecialCharCount++
     }
-    SpecialCharCount++
-    CritErrObjectExists = true
   }
 }
 
@@ -97,7 +100,12 @@ const evalJSON = function(jsonInput) {
 
     for (category in obj) {
       if (obj[category] !== "") {
-        const valuesArr = obj[category].split(",")
+        const values = obj[category].split(",")
+
+        if (category !== "Path to Assets") {
+          charCheck(category, values, CritErrObject)
+        }
+
       } else {
         checkMandatory(category, CritErrObject)
       }

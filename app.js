@@ -25,7 +25,7 @@ const jsonData = require(inputPath)
 const brandfile = require('./config/brands/vml')
 const brandID = brandfile.VML
 
-const MassUpload = true
+const MassUpload = false
 
 // Output Variables
 let jsonOutput = []
