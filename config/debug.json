@@ -9,7 +9,7 @@
     "Number of People|Group of People (3+)",
     "Location|Los Angeles, CA (Venice Beach)",
     "Asset Type|Photography",
-    "Asset Subtype|Original",
+    "Asset Subtype|Logos",
     "Year|2016"
   ],
   "Keywords": [
@@ -46,7 +46,8 @@
   "HierarchicalSubject": [
     "Product|GTQ",
     "Product|Towel",
-    "Number of People|One",
+    "Product|GTQ - FTW",
+    "Number of People|Four",
     "Other Keywords|Bleachers",
     "Location|Los Angeles, CA (Venice Beach)",
     "Asset Type|Photography",
@@ -82,18 +83,6 @@
 {
   "SourceFile": "Gatorade/2016/KAT Venice Beach/._SLG7985.jpg",
   "FileName": "._SLG7985.jpg",
-  "HierarchicalSubject": [
-    "Athlete|Karl-Anthony Towns",
-    "Gender|Male",
-    "Product|GTQ - Fierce",
-    "Product|Coolers",
-    "Number of People|One",
-    "Concept|Consumption",
-    "Location|Los Angeles, CA (Venice Beach)",
-    "Asset Type|Photography",
-    "Asset Subtype|Original",
-    "Year|2016"
-  ],
   "Keywords": [
     2016,
     "Consumption",
@@ -151,7 +140,7 @@
 {
   "SourceFile": "/Volumes/VML to Bynder/Gatorade/2016/Sports Fuel/Usain Bolt/USAINBOLT-GATORADE-2015-1495.tif",
   "FileName": "USAINBOLT-GATORADE-2015-1495.tif",
-  "HierarchicalSubject": ["Athlete|Usain Bolt","Gender|Male","Sport|Track","Product|Gx","Concept|Portrait","Concept|Sweep","Number of People|One","Asset Subtype|Original","Asset Type|Photography","Year|2016"],
+  "HierarchicalSubject": ["Athlete|Usain Bolt","Gender|Male","Sport|Track","Product|Gx","Concept|Portr#ait","Concept|Sweep","Number of P!eople|One","Asset Subtype|Original","Asset Type|Photography","Year|2016"],
   "Keywords": [2016,"Gx","Male","One","Original","Photography","Portrait","Sweep","Track","Usain Bolt"],
   "Subject": [2016,"Gx","Male","One","Original","Photography","Portrait","Sweep","Track","Usain Bolt"],
   "CreateDate": "2015:12:10 22:42:22",
