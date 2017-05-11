@@ -15,11 +15,11 @@ const evalJSON = require('./modules/eval-json')
 const evalTags = require('./modules/eval-tags')
 
 // Input and Output Options
-// const inputPath = process.argv[2]
-// const outputPath = process.argv[3]
-const inputPath = './files/gatorade-5-9v2.json'
-const outputPath = './files/gatorade-output-5-10.csv'
-const jsonData = require(inputPath)
+const inputPath = process.argv[2]
+const outputPath = process.argv[3]
+// const inputPath = './files/gatorade-5-9v2.json'
+// const outputPath = './files/gatorade-output-5-10.csv'
+const jsonData = require("./" + inputPath)
 
 // Brand Settings
 const brandfile = require('./config/brands/vml')

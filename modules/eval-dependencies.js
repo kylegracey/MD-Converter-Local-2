@@ -17,7 +17,7 @@ const checkTags = function (obj, category, values, CritErrObject, DependencyCoun
 
     for (var MpOption of MpOptions) {
       if (value == MpOption.Label) {
-        console.log(`found match between ${value} and ${MpOption.Label}`)
+        // console.log(`found match between ${value} and ${MpOption.Label}`)
         ValidTag = true
 
         if (MpOption.Dependencies !== undefined) {
