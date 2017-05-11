@@ -1,3 +1,5 @@
+//NEED TO REFACTOR THIS TO USE TAXONOMY STRUCTURE INSTEAD
+
 const getSetting = require('./get-setting')
 const wordSearch = require('./word-search')
 
@@ -87,7 +89,13 @@ const sortHS = function (objHS, newObj) {
       // For each string containing a set of hierarchical subject tags. Ex:
       // 'Product|Protein Powder|Individual Packet'
       hsArr = hs.split('|')
-      sortHSLogic(remapCheck(hsArr), newObj)
+
+      // Gx to Gx bottle exception for campaign.
+      if (hsArr[0] == "Campaign") {
+        sortHSLogic(hsArr, newObj)
+      } else {
+        sortHSLogic(remapCheck(hsArr), newObj)
+      }
 
     })
   }

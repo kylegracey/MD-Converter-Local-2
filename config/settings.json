@@ -19,7 +19,6 @@
       ],
       "Prime": [
         "Energy Chews",
-        "Prime Pouch",
         "Fuel Bar",
         "Sports Fuel Drink"
       ],
@@ -275,6 +274,7 @@
       "Gx Bottle" : ["Gx"],
       "Joe Athlete" : ["Joe"],
       "Product Close Up" : ["Product Hero"],
+      "Sports Fuel Drink" : ["Prime Pouch"],
       "Whey Protein Bar" : ["Recover Bar"]
     }
   }

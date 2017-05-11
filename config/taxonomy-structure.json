@@ -446,6 +446,14 @@
         }
       },
       {
+        "Label": "Protein Powder",
+        "Dependencies": {
+          "clientteam": [
+            "Gatorade"
+          ]
+        }
+      },
+      {
         "Label": "Soccer Formula",
         "Dependencies": {
           "clientteam": [
