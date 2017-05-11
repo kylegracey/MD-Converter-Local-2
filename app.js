@@ -57,63 +57,58 @@ const joinArrays = function(obj) {
 }
 
 const parseMassUpload = function(data) {
-  // Loop through each object in Data
-  data.forEach(function(obj) {
-    // Get the object
-    // let obj = data[i]
-    // console.log(obj.FileName)
-    let newObj = {
-      "brand" : brandID,
-      "name" : trimExtension(obj),
-      "filename" : obj.FileName,
-      "tags" : [],
-      "File Extension": "",
-      "Group" : getSetting("Group"),
-      "Client Team" : getSetting("Client Team"),
-      "Asset Type" : [],
-      "Asset Sub-Type" : [],
-      "Year" : [],
-      "Campaign" : [],
-      "Product Group" : [],
-      "Product" : [],
-      "Product Size" : [],
-      "Product Subtype" : [],
-      "Product Gender" : [],
-      "Number of People" : [],
-      "Person" : [],
-      "Team Marks" : [],
-      "Gender" : [],
-      "Shot Type" : [],
-      "Sport" : [],
-      "Asset Expired" : [],
-      "Market" : [],
-      "Platform Rights" : [],
-      "Job ID" : [],
-      MassUpload: true
-    };
-
-    sortKeywords(obj, newObj)
-    groupSearch(newObj)
-    delete newObj.MassUpload
-
-    // Year fallback
-    if (newObj.Created !== undefined && newObj.year.length == 0) {
-      newObj.year.push(newObj.Created.substring(0,4))
-    }
-
-    //Push tags into TagTracker
-    for (let i = 0; i < newObj.tags.length; i++) {
-      TagTracker.push(newObj.tags[i])
-    }
-
-    // Join arrays and push output
-    joinArrays(newObj)
-    jsonOutput.push(newObj)
-
-  })
-  writeCsvFile(jsonOutput, outputPath)
-  evalJSON(jsonOutput, MassUpload)
-  evalTags(TagTracker)
+  // // Loop through each object in Data
+  // data.forEach(function(obj) {
+  //   // Get the object
+  //   // let obj = data[i]
+  //   // console.log(obj.FileName)
+  //   let newObj = {
+  //     "brand" : brandID,
+  //     "name" : trimExtension(obj),
+  //     "filename" : obj.FileName,
+  //     "tags" : [],
+  //     "File Extension": "",
+  //     "Group" : getSetting("Group"),
+  //     "Client Team" : getSetting("Client Team"),
+  //     "Asset Type" : [],
+  //     "Asset Sub-Type" : [],
+  //     "Year" : [],
+  //     "Campaign" : [],
+  //     "Product Group" : [],
+  //     "Product" : [],
+  //     "Product Size" : [],
+  //     "Product Subtype" : [],
+  //     "Product Gender" : [],
+  //     "Number of People" : [],
+  //     "Person" : [],
+  //     "Team Marks" : [],
+  //     "Gender" : [],
+  //     "Shot Type" : [],
+  //     "Sport" : [],
+  //     "Asset Expired" : [],
+  //     "Market" : [],
+  //     "Platform Rights" : [],
+  //     "Job ID" : [],
+  //     MassUpload: true
+  //   };
+  //
+  //   sortKeywords(obj, newObj)
+  //   groupSearch(newObj)
+  //   delete newObj.MassUpload
+  //
+  //   //Push tags into TagTracker
+  //   for (let i = 0; i < newObj.tags.length; i++) {
+  //     TagTracker.push(newObj.tags[i])
+  //   }
+  //
+  //   // Join arrays and push output
+  //   joinArrays(newObj)
+  //   jsonOutput.push(newObj)
+  //
+  // })
+  // writeCsvFile(jsonOutput, outputPath)
+  // evalJSON(jsonOutput, MassUpload)
+  // evalTags(TagTracker)
 
 }
 
@@ -124,7 +119,7 @@ const parseMD = function(data) {
     // let obj = data[i]
     // console.log(obj.FileName)
     let newObj = {
-      "Asset Name" : trimExtension(obj),
+      "Asset Name" : [],
       "Asset Description" : getDescription(obj),
       BrandSubbrand : getSetting("BrandSubBrand"),
       Created : getCreateDate(obj),
@@ -157,15 +152,15 @@ const parseMD = function(data) {
       jobid : [],
       MassUpload: false
     };
-
+    trimExtension(obj, newObj)
     sortKeywords(obj, newObj)
     groupSearch(newObj)
     delete newObj.MassUpload
 
-    // Year fallback
-    if (newObj.Created !== undefined && newObj.year.length == 0) {
-      newObj.year.push(newObj.Created.substring(0,4))
-    }
+    // // Year fallback
+    // if (newObj.Created !== undefined && newObj.year.length == 0) {
+    //   newObj.year.push(newObj.Created.substring(0,4))
+    // }
 
     //Push tags into TagTracker
     for (let i = 0; i < newObj.Tags.length; i++) {

@@ -276,6 +276,10 @@
       "Product Close Up" : ["Product Hero"],
       "Sports Fuel Drink" : ["Prime Pouch"],
       "Whey Protein Bar" : ["Recover Bar"]
-    }
+    },
+    "Font File Types": [
+      "otf",
+      "ttf"
+    ]
   }
 ]

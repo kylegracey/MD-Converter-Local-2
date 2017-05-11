@@ -4,6 +4,7 @@ const getSetting = require('./get-setting')
 const wordSearch = require('./word-search')
 
 const altKeywords = getSetting("Keyword Remaps")
+const fontFileTypes = getSetting("Font File Types")
 
 const remapCheck = function(Keywords) {
   //Takes an array of keywords, loops through and remaps any of them.
@@ -113,6 +114,23 @@ const sortKeywords = function(obj, newObj) {
   } else {
     (`!!!!Warning!!!! ${obj.FileName} has no keywords!!!!`)
   }
+
+  // Keyword fallbacks
+
+  // Asset Type Fallback by FileName
+  if (newObj.assettype.length == 0) {
+    for (var filetype of fontFileTypes) {
+      if (newObj.fileextension == filetype) {
+        newObj.assettype.push("Fonts")
+      }
+    }
+  }
+
+  // Year fallback
+  if (newObj.Created !== undefined && newObj.year.length == 0) {
+    newObj.year.push(newObj.Created.substring(0,4))
+  }
+
 }
 
 module.exports = sortKeywords
