@@ -234,5 +234,129 @@
         }
       }
     ]
+  },
+  {
+    "Metaproperty": "productgroup",
+    "Label": "Product Group",
+    "Options": [
+      {
+        "Label": "GTQ",
+        "Dependencies": {
+          "clientteam": [
+            "Gatorade"
+          ]
+        }
+      },
+      {
+        "Label": "Bars",
+        "Dependencies": {
+          "clientteam": [
+            "Gatorade"
+          ]
+        }
+      },
+      {
+        "Label": "Prime",
+        "Dependencies": {
+          "clientteam": [
+            "Gatorade"
+          ]
+        }
+      },
+      {
+        "Label": "Perform",
+        "Dependencies": {
+          "clientteam": [
+            "Gatorade"
+          ]
+        }
+      },
+      {
+        "Label": "Recover",
+        "Dependencies": {
+          "clientteam": [
+            "Gatorade"
+          ]
+        }
+      },
+      {
+        "Label": "Endurance",
+        "Dependencies": {
+          "clientteam": [
+            "Gatorade"
+          ]
+        }
+      },
+      {
+        "Label": "Equipment",
+        "Dependencies": {
+          "clientteam": [
+            "Gatorade"
+          ]
+        }
+      },
+      {
+        "Label": "Gx",
+        "Dependencies": {
+          "clientteam": [
+            "Gatorade"
+          ]
+        }
+      },
+      {
+        "Label": "Heritage",
+        "Dependencies": {
+          "clientteam": [
+            "Gatorade"
+          ]
+        }
+      },
+      {
+        "Label": "Sports Fuel Innovation Betas",
+        "Dependencies": {
+          "clientteam": [
+            "Gatorade"
+          ]
+        }
+      },
+      {
+        "Label": "Unflavored Water",
+        "Dependencies": {
+          "clientteam": [
+            "Propel"
+          ]
+        }
+      },
+      {
+        "Label": "Flavored Water",
+        "Dependencies": {
+          "clientteam": [
+            "Propel"
+          ]
+        }
+      },
+      {
+        "Label": "Powder Pack",
+        "Dependencies": {
+          "clientteam": [
+            "Propel"
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "Metaproperty": "product",
+    "Label": "Product",
+    "Options": [
+      {
+        "Label": "Coolers",
+        "Dependencies": {
+          "clientteam": [
+            "Gatorade"
+          ]
+        }
+      }
+    ]
   }
 ]
