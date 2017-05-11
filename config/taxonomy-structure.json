@@ -899,7 +899,7 @@
       { "Label": "Blogger" },
       { "Label": "Trayvon Bromell" },
       { "Label": "Francisco Lindor" },
-      { "Label": "Aaron Ramsey" },
+      { "Label": "Aaron Ramsey" }
     ]
   },
   {
@@ -917,7 +917,7 @@
       { "Label": "None" },
       { "Label": "One" },
       { "Label": "Two" },
-      { "Label": "Group of People (3+)" },
+      { "Label": "Group of People (3+)" }
     ]
   }
 ]
