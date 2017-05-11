@@ -26,8 +26,11 @@ const checkTags = function (obj, category, values, CritErrObject, DependencyCoun
             //For each type of dependency (by metaproperty)
             for (let dependency of MpOption.Dependencies[mp]) {
               // console.log(`${dependency} on ${mp}`)
-              if (obj[mp] == dependency) {
-                ValidDependency = true
+              let dependencyTerms = obj[mp].split(",")
+              for (term of dependencyTerms) {
+                if (term == dependency) {
+                  ValidDependency = true
+                }
               }
             }
           }

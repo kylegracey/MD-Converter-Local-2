@@ -165,5 +165,32 @@
   "Subject": ["Individual Product","Product Renders","Soccer Formula"],
   "CreateDate": "2016:04:14 10:04:09-07:00",
   "FileAccessDate": "2017:05:09 13:41:12-05:00"
+},
+{
+  "SourceFile": "/Volumes/VML to Bynder/Gatorade/Product Renders/Equipment/1_gal_cooler_2010 copy.jpg",
+  "FileName": "1_gal_cooler_2010 copy.jpg",
+  "HierarchicalSubject": ["Product|Coolers","Asset Type|Product Renders","Product|Coolers|1 Gallon","Shot Type|Individual Product"],
+  "Keywords": ["Coolers","Individual Product","Product Renders"],
+  "Subject": ["Coolers","Individual Product","Product Renders"],
+  "FileAccessDate": "2017:05:09 13:39:44-05:00"
+},
+{
+  "SourceFile": "/Volumes/VML to Bynder/Gatorade/Product Renders/Equipment/3-gallon cooler copy.jpg",
+  "FileName": "3-gallon cooler copy.jpg",
+  "HierarchicalSubject": ["Product|Coolers","Asset Type|Product Renders","Product|Coolers|3 Gallon","Shot Type|Individual Product"],
+  "Keywords": ["3 Gallon","Coolers","Individual Product","Product Renders"],
+  "Subject": ["3 Gallon","Coolers","Individual Product","Product Renders"],
+  "CreateDate": "2007:09:28 04:05:49",
+  "DateCreated": "2007:09:28",
+  "DateTimeOriginal": "2007:09:28 04:05:49",
+  "FileAccessDate": "2017:05:09 13:39:44-05:00"
+},
+{
+  "SourceFile": "/Volumes/VML to Bynder/Gatorade/Product Renders/Equipment/48qt_ice_chest_gseries copy.jpg",
+  "FileName": "48qt_ice_chest_gseries copy.jpg",
+  "HierarchicalSubject": ["Product|Coolers","Asset Type|Product Renders","Product|Coolers|Ice Chest","Shot Type|Individual Product"],
+  "Keywords": ["Coolers","Individual Product","Product Renders"],
+  "Subject": ["Coolers","Individual Product","Product Renders"],
+  "FileAccessDate": "2017:05:09 13:39:44-05:00"
 }
 ]

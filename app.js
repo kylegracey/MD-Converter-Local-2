@@ -157,11 +157,6 @@ const parseMD = function(data) {
     groupSearch(newObj)
     delete newObj.MassUpload
 
-    // // Year fallback
-    // if (newObj.Created !== undefined && newObj.year.length == 0) {
-    //   newObj.year.push(newObj.Created.substring(0,4))
-    // }
-
     //Push tags into TagTracker
     for (let i = 0; i < newObj.Tags.length; i++) {
       TagTracker.push(newObj.Tags[i])
